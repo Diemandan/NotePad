@@ -1,0 +1,31 @@
+body {
+    
+    background-color: rgb(164, 197, 98);
+}
+.table-style {
+    border-radius: 10px;
+    box-shadow:
+        0 0 0 10px #3f8b7f;
+    text-indent: 30px;
+    padding: 1px 20px 1px 20px;
+    margin: 20px auto;
+    width: 400px;
+    background: rgb(172, 166, 168);
+
+}
+
+.first {
+    
+    position: absolute;
+    margin: auto;
+    top: 5px;
+    bottom: 0;
+    left: 350px;
+    right: 0;
+    
+}
+
+.marg {
+    
+    padding-bottom: 1px;
+}
