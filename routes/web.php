@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {   return view('welcome');});
+Route::get('/kadena', function () {   return view('kadena');});
 Route::get('/',[NoteController::class,'index'])->name('home');
 Route::post('/notes', [NoteController::class,'store'])->name('store');
+

@@ -22,6 +22,6 @@ class NoteController extends Controller
     $note->description = $request->input('description');
     $note->save();
     
-   return redirect()->route('home') ;
+   return redirect()->route('home')->with('success', 'Note created.') ;
   }
 }
