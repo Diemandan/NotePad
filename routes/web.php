@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NoteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/kadena', function () {   return view('kadena');});
-Route::get('/',[NoteController::class,'index'])->name('home');
-Route::post('/notes', [NoteController::class,'store'])->name('store');
+//Route::get('/', function () {    return view('welcome');});
+Route::get('/kadena', function () {   return view('kadena');})->middleware(['auth', 'verified']);
+ Route::get('/',[NoteController::class,'index'])->middleware(['auth', 'verified'])->name('home');
+Route::post('/notes', [NoteController::class,'store'])->middleware(['auth', 'verified'])->name('store');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+// Route::get('/dashboard', [NoteController::class,'index'])
+// ->middleware(['auth', 'verified'])->name('dashboard');
 

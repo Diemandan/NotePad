@@ -1,4 +1,19 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+<div class="auth">
+                        @if (Route::has('login'))
+                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                    @include('layouts.navigation')
+                                    @else
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                    @endif
+                                @endauth
+                            </div>
+                        @endif
 <?php
 function otrab($n,$k) {
 return (strtotime($k)-strtotime($n))/86400;
@@ -8,14 +23,14 @@ function na4isleniya($zp) {
 }
 //    НИЖЕ можно менять
  $n='21-10-2022';   //  начало каденции 
-$k='30-10-2022';    //  конец каденции
+$k='04-11-2022';    //  конец каденции
 $salary=70; //зарплата сутки
 $ost=403; //остаток с прошлой каденции 
 $zp=[
         '20-10'=>300,
         '25-10'=>400,
         '27-10'=>413,
-        // '08-07'=>366,
+        '03-10'=>324,
         // '14-07'=>300,
         // '14-07/1'=>139,
         // '20-07'=>-30,//дозагрузка'

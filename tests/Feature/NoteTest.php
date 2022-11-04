@@ -1,11 +1,12 @@
 <?php
 
 namespace Tests\Feature;
-
+use App\Models\User;
 use App\Models\Note;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Database\Seeders\OrderStatusSeeder;
+use Illuminate\Support\Facades\Http;
 
 class NoteTest extends TestCase
 {
@@ -20,18 +21,25 @@ class NoteTest extends TestCase
     public function testStartPageAvailable()
     {
         $response = $this->get('/');
-        $response->assertStatus(200);
+        $response->assertRedirect('/login');
     }
 
     public function testStoreNewNoteWork()
-    {
-        $this->post('/notes', [
-            'name' => 'testName11',
-            'description' => 'testDescription',
+     { 
+        $user = User::factory()->create();
+        $response = $this->actingAs($user) ->withSession(['banned' => false])
+                         ->get('/');
+        
+        $this->post('http://notepad/notes', [
+            
+            'name' => 'testName1',
+            'description' => 'testDescription1',
+            'user_id' => auth()->id(),
         ]);
         $this->assertDatabaseHas('notes', [
-            'name' => 'testName11',
-            'description' => 'testDescription',
+            'user_id' => auth()->id(),
+            'name' => 'testName1',  
+            'description' => 'testDescription1',
         ]);
     }
 
@@ -41,8 +49,13 @@ class NoteTest extends TestCase
         $response->assertRedirectContains('/');
     }
 
-    public function testValidation()
+    public function testValidationNewNote()
     {
+        $user = User::factory()->create();
+        $auth = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
         $response = $this->post('/notes');
         $response->assertSessionHasErrors([
             'name' => 'The name field is required.',
@@ -54,6 +67,5 @@ class NoteTest extends TestCase
     {
         $this->seed();
         $this->assertDatabaseCount('notes', 10);
-
     }
 }

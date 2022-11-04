@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\Note;
+use Doctrine\DBAL\Schema\Sequence;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            
+            'user_id'=>fake()->randomElement([1,2,3]),
             'name'=>fake()->unique()->text(5) ,
             'description'=>fake()->sentence(5),
         ];
