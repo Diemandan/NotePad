@@ -12,13 +12,19 @@
         </div>
         <div class="primer1">
             <h2>History of my notes</h2>
+            
+            <x-button>
+                <x-slot name="value">delete All Notes</x-slot>
+                    all</x-button>
 
             @foreach ($notes as $note)
                 <div class="primer1-marg">
                     <li class="table-style">{{ $note->name }} <p>
                             {{ $note->description }}</p>
 
-                            <x-button>{{$note->id}}</x-button>
+                            <x-button>
+                            <x-slot name="value">delete</x-slot>
+                                {{$note->id}}</x-button>
                     </li>
                 </div>
             @endforeach

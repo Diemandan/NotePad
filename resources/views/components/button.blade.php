@@ -1,2 +1,5 @@
-<input style="float: right;color: red" type="button" value="delete" class="btn btn-success mt-2"
-                    onClick='location.href="/notes/{{ $slot }}"'>
+<form action="/notes/{{ $slot }}" method="POST">
+    @method('DELETE')
+    @csrf
+<input style="float: right;color: red" type="submit" value="{{$value}}" class="btn btn-success mt-2"         >
+                </form>

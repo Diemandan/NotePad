@@ -17,7 +17,9 @@ use App\Http\Controllers\NoteController;
 Route::get('/kadena', function () {   return view('kadena');})->middleware(['auth', 'verified']);
  Route::get('/',[NoteController::class,'index'])->middleware(['auth', 'verified'])->name('home');
 Route::post('/notes', [NoteController::class,'store'])->middleware(['auth', 'verified'])->name('store');
-Route::post('/notes/{id}',[NoteController::class,'delete'])->middleware(['auth'])->name('delete');
+Route::delete('/notes/all',[NoteController::class,'deleteAll'])->middleware(['auth'])->name('deleteAll');
+
+Route::delete('/notes/{id}',[NoteController::class,'delete'])->middleware(['auth'])->name('delete');
 
 require __DIR__.'/auth.php';
 
