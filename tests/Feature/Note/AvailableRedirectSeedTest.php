@@ -34,4 +34,10 @@ class AvailableRedirectSeed extends TestCase
         $this->seed();
         $this->assertDatabaseCount('notes', 10);
     }
+
+    public function testCreateNotePageAvailable()
+    {
+        $response = $this->get('/create');
+        $response->assertRedirect('/login');
+    }
 }

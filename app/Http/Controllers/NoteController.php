@@ -13,11 +13,17 @@ class NoteController extends Controller
   public function index(Request $request)
   {
     $data = auth()->id();
-    $notes = Note::all()
-      ->sortBy('updated_at')
-      ->where('user_id', $data);
+    $notes = DB::table('notes')
+      ->where('user_id', $data)
+      ->latest()
+      ->get();
 
     return view('home', ['notes' => $notes, 'data' => $data]);
+  }
+
+  public function create(Request $request)
+  {
+    return view('createnote');
   }
 
   public function store(StoreNoteRequest $request)
@@ -34,17 +40,21 @@ class NoteController extends Controller
           'name' => $request->input('name'),
           'description' => $request->input('description'),
         ]);
+
+      return redirect()
+        ->route('show', ['id' => $note_id])
+        ->with('success', 'Note edit success.');
     } else {
       $note = new Note();
       $note->name = $request->input('name');
       $note->description = $request->input('description');
       $note->user_id = auth()->id();
       $note->save();
-    }
 
-    return redirect()
-      ->route('home')
-      ->with('success', 'Note created.');
+      return redirect()
+        ->route('home')
+        ->with('success', 'Note created.');
+    }
   }
 
   public function edit(Request $request, $id)

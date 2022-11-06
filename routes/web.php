@@ -31,5 +31,7 @@ Route::get('/notes/{id}/edit', [NoteController::class, 'edit'])
 Route::delete('/notes/{id}', [NoteController::class, 'delete'])
     ->middleware(['auth']) ->name('delete');
 
+    Route::get('/create', [NoteController::class, 'create'])
+    ->middleware(['auth']) ->name('create');
 require __DIR__ . '/auth.php';
 

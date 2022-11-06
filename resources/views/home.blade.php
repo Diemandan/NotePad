@@ -1,23 +1,23 @@
 <x-app-layout>
     <div class="form-group mt-4">
 
-
-
-        <h1 style="font-size: 25px">New note</h1>
         <div>
             <x-info.errors />
         </div>
-        <div>
-            <x-note.new-note />
-        </div>
-        <div class="primer1">
-            <h2>History of my notes</h2>
 
-            <x-button>
+        <div style="position: relative">
+            <form action="/create" method="get">
+                <x-primary-button style="float:left; line-height: 30px">Create note</x-primary-button>
+            </form>
+
+            <x-button style="float: right">
                 <x-slot name="style">float: right;color: red</x-slot>
                 <x-slot name="value">delete All Notes</x-slot>
                 all
             </x-button>
+        </div>
+        <div class="primer1" style="position: relative; top: 120px; left: -20px;">
+
 
             @foreach ($notes as $note)
                 <div class="primer1-marg">
