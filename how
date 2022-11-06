@@ -12,3 +12,37 @@
 [33m149bc2b[m HEAD@{11}: commit (amend): auth and notes by id
 [33m5b6c29a[m HEAD@{12}: commit: auth and notes by id
 [33m5681639[m HEAD@{13}: commit (amend): make tests for Note methods and seeders
+[33m332ce96[m HEAD@{14}: commit (amend): make tests for Note methods and seeders
+[33m7401b0d[m HEAD@{15}: commit (amend): make tests for Note methods and seeders
+[33mf10503a[m HEAD@{16}: commit (amend): make tests for Note methods and seeders
+[33m1de76c2[m HEAD@{17}: checkout: moving from auth to main
+[33mc8c9e3f[m[33m ([m[1;32mauth[m[33m)[m HEAD@{18}: commit (amend): add auth
+[33mf2cecc6[m HEAD@{19}: checkout: moving from main to auth
+[33m1de76c2[m HEAD@{20}: checkout: moving from auth to main
+[33mf2cecc6[m HEAD@{21}: checkout: moving from main to auth
+[33m1de76c2[m HEAD@{22}: checkout: moving from auth to main
+[33mf2cecc6[m HEAD@{23}: checkout: moving from main to auth
+[33m1de76c2[m HEAD@{24}: commit (amend): make tests for Note methods and seeders
+[33md6e21aa[m HEAD@{25}: checkout: moving from auth to main
+[33mf2cecc6[m HEAD@{26}: checkout: moving from main to auth
+[33md6e21aa[m HEAD@{27}: commit (amend): make tests for Note methods and seeders
+[33m92c56ea[m HEAD@{28}: commit (amend): make tests for Note methods and seeders
+[33mb0e8e9a[m HEAD@{29}: commit (amend): make tests for Note methods and seeders
+[33mbe7a8da[m HEAD@{30}: commit: make tests for Note methods and seeders
+[33m1d1c492[m HEAD@{31}: commit: make 10 seeders
+[33m9478367[m HEAD@{32}: commit (amend): make Model,Controller,Migration
+[33m8010dfb[m HEAD@{33}: commit (amend): make Model,Controller,Migration
+[33ma5f79d1[m HEAD@{34}: commit (amend): make Model,Controller,Migration
+[33m551526c[m HEAD@{35}: commit (amend): make Model,Controller,Migrate
+[33m5023aab[m HEAD@{36}: checkout: moving from auth to main
+[33mf2cecc6[m HEAD@{37}: checkout: moving from main to auth
+[33m5023aab[m HEAD@{38}: checkout: moving from auth to main
+[33mf2cecc6[m HEAD@{39}: commit (amend): add auth
+[33ma911666[m HEAD@{40}: checkout: moving from main to auth
+[33m5023aab[m HEAD@{41}: checkout: moving from auth to main
+[33ma911666[m HEAD@{42}: commit: add auth
+[33m5023aab[m HEAD@{43}: checkout: moving from main to auth
+[33m5023aab[m HEAD@{44}: checkout: moving from auth to main
+[33m5023aab[m HEAD@{45}: checkout: moving from main to auth
+[33m5023aab[m HEAD@{46}: Branch: renamed refs/heads/master to refs/heads/main
+[33m5023aab[m HEAD@{48}: commit (initial): first commit

@@ -19,6 +19,9 @@ Route::get('/kadena', function () {   return view('kadena');})->middleware(['aut
 Route::post('/notes', [NoteController::class,'store'])->middleware(['auth', 'verified'])->name('store');
 Route::delete('/notes/all',[NoteController::class,'deleteAll'])->middleware(['auth'])->name('deleteAll');
 
+Route::get('/note/{id}',[NoteController::class,'show'])->middleware(['auth'])->name('show');
+
+
 Route::delete('/notes/{id}',[NoteController::class,'delete'])->middleware(['auth'])->name('delete');
 
 require __DIR__.'/auth.php';

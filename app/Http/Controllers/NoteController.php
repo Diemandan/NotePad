@@ -33,6 +33,13 @@ class NoteController extends Controller
       ->with('success', 'Note created.');
   }
 
+  public function editNote(StoreNoteRequest $request){}
+
+  public function show(Request $request,$id){
+    $note = DB::table('notes')->where('id', $id)->first();
+    return view('note', ['note' => $note]);
+  }
+
   public function delete(Request $request, $id)
   {
     DB::table('notes')
