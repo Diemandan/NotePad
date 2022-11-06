@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoteRequest;
 use App\Models\Note;
 use Illuminate\Support\Facades\DB;
-Use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
 
 class NoteController extends Controller
 {
@@ -22,21 +22,44 @@ class NoteController extends Controller
 
   public function store(StoreNoteRequest $request)
   {
-    $note = new Note();
-    $note->name = $request->input('name');
-    $note->description = $request->input('description');
-    $note->user_id = auth()->id();
-    $note->save();
+    $note_id = $request->input('note_id');
+    if (
+      DB::table('notes')
+        ->where('id', $note_id)
+        ->exists()
+    ) {
+      DB::table('notes')
+        ->where('id', $note_id)
+        ->update([
+          'name' => $request->input('name'),
+          'description' => $request->input('description'),
+        ]);
+    } else {
+      $note = new Note();
+      $note->name = $request->input('name');
+      $note->description = $request->input('description');
+      $note->user_id = auth()->id();
+      $note->save();
+    }
 
     return redirect()
       ->route('home')
       ->with('success', 'Note created.');
   }
 
-  public function editNote(StoreNoteRequest $request){}
+  public function edit(Request $request, $id)
+  {
+    $note = DB::table('notes')
+      ->where('id', $id)
+      ->first();
+    return view('editnote', ['note' => $note]);
+  }
 
-  public function show(Request $request,$id){
-    $note = DB::table('notes')->where('id', $id)->first();
+  public function show(Request $request, $id)
+  {
+    $note = DB::table('notes')
+      ->where('id', $id)
+      ->first();
     return view('note', ['note' => $note]);
   }
 
@@ -53,7 +76,7 @@ class NoteController extends Controller
   public function deleteAll(Request $request)
   {
     $user_id = auth()->id();
-    
+
     DB::table('notes')
       ->where('user_id', '=', $user_id)
       ->delete();

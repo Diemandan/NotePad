@@ -14,16 +14,13 @@ class ShowNoteTest extends TestCase
     {
         $user = User::factory()->create();
         $note = Note::factory()->create();
-        $this->actingAs($user)
-            ->withSession(['banned' => false])
-            ->get('/');
 
-        $response = $this->get('/note/' . $note->id);
-        
+        $response = $this->actingAs($user)
+            ->withSession(['banned' => false])
+            ->get('/notes/' . $note->id);
+
         $response->assertStatus(200);
     }
-
-    
 }
 
 ?>

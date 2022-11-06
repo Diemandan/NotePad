@@ -14,19 +14,22 @@ use App\Http\Controllers\NoteController;
 */
 
 //Route::get('/', function () {    return view('welcome');});
-Route::get('/kadena', function () {   return view('kadena');})->middleware(['auth', 'verified']);
- Route::get('/',[NoteController::class,'index'])->middleware(['auth', 'verified'])->name('home');
-Route::post('/notes', [NoteController::class,'store'])->middleware(['auth', 'verified'])->name('store');
-Route::delete('/notes/all',[NoteController::class,'deleteAll'])->middleware(['auth'])->name('deleteAll');
+Route::get('/kadena', function () {   return view('kadena');})
+    ->middleware(['auth', 'verified']);
+Route::get('/', [NoteController::class, 'index'])
+    ->middleware(['auth', 'verified']) ->name('home');
+Route::match(['put', 'post'], '/notes', [NoteController::class, 'store'])
+    ->middleware(['auth', 'verified']) ->name('store');
+Route::delete('/notes/all', [NoteController::class, 'deleteAll'])
+    ->middleware(['auth'])->name('deleteAll');
 
-Route::get('/note/{id}',[NoteController::class,'show'])->middleware(['auth'])->name('show');
+Route::get('/notes/{id}', [NoteController::class, 'show'])
+    ->middleware(['auth']) ->name('show');
+Route::get('/notes/{id}/edit', [NoteController::class, 'edit'])
+    ->middleware(['auth']) ->name('edit');
 
+Route::delete('/notes/{id}', [NoteController::class, 'delete'])
+    ->middleware(['auth']) ->name('delete');
 
-Route::delete('/notes/{id}',[NoteController::class,'delete'])->middleware(['auth'])->name('delete');
-
-require __DIR__.'/auth.php';
-
-
-// Route::get('/dashboard', [NoteController::class,'index'])
-// ->middleware(['auth', 'verified'])->name('dashboard');
+require __DIR__ . '/auth.php';
 

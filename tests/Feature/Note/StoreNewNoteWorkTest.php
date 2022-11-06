@@ -15,13 +15,12 @@ class StoreNewNoteTest extends TestCase
         $user = User::factory()->create();
         $response = $this->actingAs($user)
             ->withSession(['banned' => false])
-            ->get('/');
+            ->post('/notes', [
+                'name' => 'testName1',
+                'description' => 'testDescription1',
+                'user_id' => auth()->id(),
+            ]);
 
-        $this->post('/notes', [
-            'name' => 'testName1',
-            'description' => 'testDescription1',
-            'user_id' => auth()->id(),
-        ]);
         $this->assertDatabaseHas('notes', [
             'user_id' => auth()->id(),
             'name' => 'testName1',
