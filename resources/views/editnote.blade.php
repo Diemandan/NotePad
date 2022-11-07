@@ -1,12 +1,14 @@
 <x-app-layout>
-    <div class="form-group mt-4">
+    
+    <div class="container">
+    <div class="form-group mt-4" >
 
 
 
         <h1 style="font-size: 25px">Edit Your note {{ $note->name }}</h1>
-        <div>
+        {{-- <div>
             <x-info.errors />
-        </div>
+        </div> --}}
 
         <div class="primer1">
 
@@ -38,8 +40,9 @@
 
                 </div>
             </div>
-
+           
         </div>
 
+    </div>
     </div>
 </x-app-layout>

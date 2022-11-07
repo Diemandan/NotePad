@@ -14,11 +14,11 @@ class DeleteNoteTest extends TestCase
     {
         $user = User::factory()->create();
         $note = Note::factory()->create();
-        $this->actingAs($user)
+        $response = $this->actingAs($user)
             ->withSession(['banned' => false])
-            ->get('/');
+            ->delete('/notes/' . $note->id);
 
-        $response = $this->delete('/notes/' . $note->id);
+        
         $this->assertDatabaseMissing('notes', [
             'id' => $note->id,
         ]);

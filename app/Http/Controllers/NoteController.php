@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNoteRequest;
+
 use App\Models\Note;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 
 class NoteController extends Controller
 {
@@ -67,10 +67,9 @@ class NoteController extends Controller
 
   public function show(Request $request, $id)
   {
-    $note = DB::table('notes')
-      ->where('id', $id)
-      ->first();
-    return view('note', ['note' => $note]);
+    $note = Note::find($id);
+    $comments = $note->comments;
+    return view('note', ['note' => $note, 'comments' => $comments]);
   }
 
   public function delete(Request $request, $id)
@@ -78,9 +77,14 @@ class NoteController extends Controller
     DB::table('notes')
       ->where('id', '=', $id)
       ->delete();
+
+      DB::table('comments')
+      ->where('note_id', '=', $id)
+      ->delete();
+
     return redirect()
       ->route('home')
-      ->with('success', 'Note deleted.');
+      ->with('success', 'Note deleted with comments.');
   }
 
   public function deleteAll(Request $request)
@@ -90,8 +94,12 @@ class NoteController extends Controller
     DB::table('notes')
       ->where('user_id', '=', $user_id)
       ->delete();
+      DB::table('comments')
+      ->where('user_id', '=', $user_id)
+      ->delete();
+
     return redirect()
       ->route('home')
-      ->with('success', 'All Notes deleted.');
+      ->with('success', 'All Notes deleted with their comments.');
   }
 }

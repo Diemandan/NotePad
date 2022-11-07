@@ -17,4 +17,8 @@ class Note extends Model
     protected $fillable=['name','description'];
     
     use HasFactory;
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'note_id','id');
+    }
 }

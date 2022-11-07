@@ -13,7 +13,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
+    <body style='overflow-x:hidden;'>
+      <div>
+            <x-info.errors />
+        </div>
+
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
