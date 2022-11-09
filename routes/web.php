@@ -14,31 +14,32 @@ use App\Http\Controllers\NoteController;
 |
 */
 
-
-Route::get('/kadena', function () {   return view('kadena');})
-    ->middleware(['auth', 'verified']);
 Route::get('/', [NoteController::class, 'index'])
-    ->middleware(['auth', 'verified']) ->name('home');
-Route::match(['put', 'post'], '/notes', [NoteController::class, 'store'])
-    ->middleware(['auth', 'verified']) ->name('store');
-Route::delete('/notes/all', [NoteController::class, 'deleteAll'])
-    ->middleware(['auth'])->name('deleteAll');
-Route::get('/notes/{id}/comments', [CommentController::class, 'show'])
-    ->middleware(['auth']) ->name('show.comment');
-Route::post('/notes/{id}/comments', [CommentController::class, 'create'])
-    ->middleware(['auth']) ->name('create.comment');
-Route::get('/notes/{id}', [NoteController::class, 'show'])
-    ->middleware(['auth']) ->name('show');
-Route::get('/notes/{id}/edit', [NoteController::class, 'edit'])
-    ->middleware(['auth']) ->name('edit');
-Route::delete('/notes/{id}', [NoteController::class, 'delete'])
-    ->middleware(['auth']) ->name('delete');
-Route::delete('/notes/{id}/comments/{comment_id}', [CommentController::class, 'delete'])
-    ->middleware(['auth']) ->name('delete');
+    ->middleware(['auth', 'verified'])
+        ->name('home');
+Route::get('/create', [NoteController::class, 'create'])
+    ->middleware(['auth'])
+        ->name('create');
 
-    Route::get('/create', [NoteController::class, 'create'])
-    ->middleware(['auth']) ->name('create');
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('/notes')->group(function () {
+        Route::match(['put', 'post'], '', [NoteController::class, 'store'])
+            ->middleware(['verified'])->name('store');
+        Route::delete('/all', [NoteController::class, 'deleteAll'])->name(
+            'deleteAll');
+        Route::get('/{id}/comments', [CommentController::class, 'show'])
+            ->name('show.comment');
+        Route::post('/{id}/comments', [CommentController::class,'create',])
+            ->name('create.comment');
+        Route::get('/{id}', [NoteController::class, 'show'])
+            ->name('show');
+        Route::get('/{id}/edit', [NoteController::class, 'edit'])
+        ->name('edit');
+        Route::delete('/{id}', [NoteController::class, 'delete'])
+            ->name('delete');
+        Route::delete('/{id}/comments/{comment_id}', [CommentController::class,'delete',])
+            ->name('delete');
+    });
+});
 
-    
 require __DIR__ . '/auth.php';
-
