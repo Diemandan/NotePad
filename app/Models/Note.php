@@ -14,7 +14,7 @@ class Note extends Model
      */
     protected $table='notes';
     
-    protected $fillable=['name','description'];
+    protected $fillable=['user_id','name','description'];
     
     use HasFactory;
     public function comments()

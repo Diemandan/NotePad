@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command ('notepad:dump')->cron('0 21 * * *');
+         $schedule->command ('notepad:dump')->cron('0 17 * * *');
+        
     }
 
     /**

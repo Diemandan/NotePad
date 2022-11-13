@@ -18,14 +18,13 @@ class DeleteNoteTest extends TestCase
             ->withSession(['banned' => false])
             ->delete('/notes/' . $note->id);
 
-        
         $this->assertDatabaseMissing('notes', [
             'id' => $note->id,
         ]);
         $response->assertRedirectContains('/');
     }
 
-    public function TestDeleteAllNotes()
+    public function testDeleteAllNotes()
     {
         $user = User::factory()->create();
 

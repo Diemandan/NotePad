@@ -37,11 +37,30 @@
             <x-comment-add>{{ $note->id }}</x-comment-add>
         </div>
 
+        <div class="table-style" >
+
+            <div >
+                <form method="GET" action="/notes/{{$note->id}}/comments/txt">
+                              
+                    <input type="submit" value="save all comments as TXT" class="btn btn-success mt-4">
+                </form>
+        
+            
+                <form method="GET" action="/notes/{{$note->id}}/comments/excel">
+                              
+                    <input type="submit" value="save all comments as XLSX" class="btn btn-success mt-4">
+                </form>
+        
+            </div>
+        </div>
+        
     
 
         
 
         <div class="container">
+
+            <div class="table-style" >
             <p class="text-center text-muted">All comments</p>
 
             <div class="list-group w-auto">
@@ -63,7 +82,7 @@
                 @endforeach
 
 
-
+            </div>
             </div>
         </div>
 

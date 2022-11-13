@@ -24,8 +24,8 @@ class StoreNoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:25',
-            'description' => 'required|min:10',
+            'name' => 'required|string|min:3|max:10',
+            'description' => 'required|string|min:6',
         ];
     }
 }

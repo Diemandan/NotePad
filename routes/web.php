@@ -25,8 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/notes')->group(function () {
         Route::match(['put', 'post'], '', [NoteController::class, 'store'])
             ->middleware(['verified'])->name('store');
-        Route::delete('/all', [NoteController::class, 'deleteAll'])->name(
-            'deleteAll');
+        Route::delete('/all', [NoteController::class, 'deleteAll'])
+            ->name('deleteAll');
         Route::get('/{id}/comments', [CommentController::class, 'show'])
             ->name('show.comment');
         Route::post('/{id}/comments', [CommentController::class,'create',])
@@ -34,11 +34,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}', [NoteController::class, 'show'])
             ->name('show');
         Route::get('/{id}/edit', [NoteController::class, 'edit'])
-        ->name('edit');
+            ->name('edit');
         Route::delete('/{id}', [NoteController::class, 'delete'])
             ->name('delete');
         Route::delete('/{id}/comments/{comment_id}', [CommentController::class,'delete',])
             ->name('delete');
+        Route::get('/{id}/comments/txt', [CommentController::class,'savetext',])
+            ->name('comment.txt'); 
+        Route::get('/{id}/comments/excel', [CommentController::class,'saveexcel',])
+            ->name('comment.excel'); 
     });
 });
 
