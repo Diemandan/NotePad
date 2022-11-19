@@ -1,11 +1,11 @@
 <?php
 
 namespace Tests\Feature\Note;
+
 use App\Models\User;
-use App\Models\Note;
 use Tests\TestCase;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 
 class AvailableRedirectSeed extends TestCase
 {
@@ -25,8 +25,11 @@ class AvailableRedirectSeed extends TestCase
 
     public function testRedirectHome()
     {
-        $response = $this->post('/notes');
-        $response->assertRedirectContains('/');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->withSession(['banned' => false])->post('/notes');
+        
+        $response->assertRedirect('/');
     }
 
     public function testSeedingNotes()
@@ -37,7 +40,10 @@ class AvailableRedirectSeed extends TestCase
 
     public function testCreateNotePageAvailable()
     {
-        $response = $this->get('/create');
-        $response->assertRedirect('/login');
+        $user = User::factory()->create();
+        
+        $response = $this->actingAs($user)->withSession(['banned' => false])->get('/create');
+        
+        $response->assertStatus(200);
     }
 }

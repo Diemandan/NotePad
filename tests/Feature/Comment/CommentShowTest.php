@@ -1,12 +1,14 @@
 <?php
 
 namespace Tests\Feature\Note;
+
 use App\Models\User;
 use App\Models\Note;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ShowCommentTest extends TestCase
+class CommentShowTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -15,8 +17,7 @@ class ShowCommentTest extends TestCase
         $user = User::factory()->create();
         $note = Note::factory()->create();
 
-        $response = $this->actingAs($user)
-            ->withSession(['banned' => false])
+        $response = $this->actingAs($user)->withSession(['banned' => false])
             ->get('/notes/' . $note->id . '/comments');
 
         $response->assertStatus(200);

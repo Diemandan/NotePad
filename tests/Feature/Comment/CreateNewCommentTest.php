@@ -1,12 +1,14 @@
 <?php
 
 namespace Tests\Feature\Note;
+
 use App\Models\User;
 use App\Models\Note;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class StoreNewCommentTest extends TestCase
+class CreateNewCommentTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -14,8 +16,8 @@ class StoreNewCommentTest extends TestCase
     {
         $user = User::factory()->create();
         $note = Note::factory()->create();
-        $response = $this->actingAs($user)
-            ->withSession(['banned' => false])
+
+        $response = $this->actingAs($user)->withSession(['banned' => false])
             ->post('/notes/'.$note->id . '/comments', [
                 'note_id' => $note->id,
                 'text' => 'qwerty',

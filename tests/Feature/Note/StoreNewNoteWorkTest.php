@@ -1,8 +1,10 @@
 <?php
 
 namespace Tests\Feature\Note;
+
 use App\Models\User;
 use App\Models\Note;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,8 +15,8 @@ class StoreNewNoteTest extends TestCase
     public function testStoreNewNoteWork()
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)
-            ->withSession(['banned' => false])
+        
+        $response = $this->actingAs($user)->withSession(['banned' => false])
             ->post('/notes', [
                 'name' => 'testName1',
                 'description' => 'testDescription1',
@@ -29,4 +31,4 @@ class StoreNewNoteTest extends TestCase
     }
 }
 
-?>
+
