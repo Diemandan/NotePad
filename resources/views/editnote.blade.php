@@ -6,9 +6,9 @@
 
 
         <h1 style="font-size: 25px">Edit Your note {{ $note->name }}</h1>
-        {{-- <div>
+        <div>
             <x-info.errors />
-        </div> --}}
+        </div>
 
         <div class="primer1">
 
@@ -27,6 +27,7 @@
                         @method('PUT')
                         @csrf
                         <input type="hidden" name="note_id" value="{{ $note->id }}">
+                        <input type="hidden" name="remind_at" value="{{ $note->remind_at }}">
                         <div class="form-group mt-4">
                             <input type="text" name="name" value="{{ $note->name }}" class="form-control">
                         </div>

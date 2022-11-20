@@ -19,7 +19,12 @@
             <input type="text" name="description"  id="description" class="form-control">
             <label for="comment">description</label>
         </div>
-  
+        
+        <div class="form-floating">
+          <input type="date" class="form-control" id="date" name="remind_at">
+          <label for="date">remind at</label>
+      </div>
+
     
         
         <button class="w-100 btn btn-lg btn-primary" type="submit">Save new note</button>

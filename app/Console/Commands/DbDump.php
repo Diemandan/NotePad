@@ -28,7 +28,7 @@ class DbDump extends Command
     
     public function handle()
     {
-        $mysqldump='  mysqldump -u admin  -padmin notepad > /var/www/notepad/storage/db-dumps/notepad_'.date('h:i:s,d.m.y').'.sql';
+        $mysqldump='  mysqldump -u admin  -padmin notepad > /var/www/notepad/storage/db-dumps/notepad_'.date('d.m.y').'.sql';
         $output = array();
         
         exec ( $mysqldump,$output );

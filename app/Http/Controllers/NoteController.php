@@ -38,7 +38,8 @@ class NoteController extends Controller
       Note::create([
         'name' => $request->input('name'),
         'description' => $request->input('description'),
-        'user_id' => auth()->id()]);
+        'user_id' => auth()->id(),
+        'remind_at' => $request->input('remind_at'),]);
      
       return redirect()->route('home')->with('success', 'Note created.');
     }

@@ -30,7 +30,7 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (15,12,20,'fgb gh gnxg','2022-11-13 20:23:27','2022-11-13 20:23:27'),(16,12,20,'gxhvgbhxgn  ghthxhv xgjh jg','2022-11-13 20:23:32','2022-11-13 20:23:32'),(17,12,19,'fbg nghbs','2022-11-13 20:54:09','2022-11-13 20:54:09'),(20,12,19,'asdqweasdqwe','2022-11-17 10:16:00','2022-11-17 10:16:00'),(21,12,19,'asdds','2022-11-17 10:34:16','2022-11-17 10:34:16'),(22,12,19,'start','2022-11-17 10:34:25','2022-11-17 10:34:25'),(23,12,20,'1232145','2022-11-17 17:48:47','2022-11-17 17:48:47'),(24,12,20,'3432','2022-11-17 17:50:05','2022-11-17 17:50:05'),(25,12,20,'132','2022-11-17 17:50:12','2022-11-17 17:50:12'),(26,12,20,'12','2022-11-17 17:55:45','2022-11-17 17:55:45'),(27,12,20,'12','2022-11-17 17:57:01','2022-11-17 17:57:01'),(28,12,20,'dsg','2022-11-17 18:19:01','2022-11-17 18:19:01');
+INSERT INTO `comments` VALUES (42,18,26,'rgerhhymjum','2022-11-20 13:20:23','2022-11-20 13:20:23'),(43,18,26,'rgerhhymjum','2022-11-20 13:20:54','2022-11-20 13:20:54'),(44,18,26,'fbgdbs','2022-11-20 13:21:00','2022-11-20 13:21:00'),(46,18,27,'regefhbfs','2022-11-20 13:26:22','2022-11-20 13:26:22');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +141,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_26_185612_create_notes_table',1),(6,'2022_11_04_210152_user_id',1),(7,'2022_11_06_193630_create_comments_table',1),(8,'2022_11_09_150236_create_jobs_table',2),(9,'2022_11_13_204757_create_employees_table',3);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_26_185612_create_notes_table',1),(6,'2022_11_04_210152_user_id',1),(7,'2022_11_06_193630_create_comments_table',1),(8,'2022_11_09_150236_create_jobs_table',2),(9,'2022_11_13_204757_create_employees_table',3),(11,'2022_11_19_175526_reminder',4);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,8 +168,9 @@ CREATE TABLE `notes` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `remind_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +179,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` VALUES (1,1,'Sunt.','Dignissimos iure sapiente voluptatem adipisci.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(2,3,'Iure.','Repellendus beatae tenetur quaerat maxime.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(3,1,'Sed.','Ea ipsum dolores vel aspernatur.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(4,2,'Non.','Est tempora distinctio quia reprehenderit sit aperiam.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(5,3,'Hic.','Laboriosam dolor explicabo quam.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(6,1,'Aut.','Rerum delectus ea iure quibusdam quis.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(7,3,'Ut.','Illo fuga quas cumque.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(8,2,'Quia.','Magnam neque odit officia velit.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(9,3,'Enim.','Adipisci architecto totam voluptas quisquam nemo autem.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(10,1,'Et.','Occaecati aspernatur cupiditate accusantium.','2022-11-09 09:21:36','2022-11-09 09:21:36'),(19,12,'hjj','jggggggggggggggggggggg','2022-11-09 11:25:06','2022-11-09 11:25:06'),(20,12,'problema','ne znau','2022-11-09 12:08:45','2022-11-17 18:18:53'),(21,12,'341413','134134134135','2022-11-17 18:27:18','2022-11-17 18:27:18'),(22,12,'fwdgvs','dsfsdfdfdf','2022-11-17 18:33:21','2022-11-17 18:33:21');
+INSERT INTO `notes` VALUES (1,1,'Sunt.','Dignissimos iure sapiente voluptatem adipisci.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(2,3,'Iure.','Repellendus beatae tenetur quaerat maxime.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(3,1,'Sed.','Ea ipsum dolores vel aspernatur.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(4,2,'Non.','Est tempora distinctio quia reprehenderit sit aperiam.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(5,3,'Hic.','Laboriosam dolor explicabo quam.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(6,1,'Aut.','Rerum delectus ea iure quibusdam quis.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(7,3,'Ut.','Illo fuga quas cumque.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(8,2,'Quia.','Magnam neque odit officia velit.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(9,3,'Enim.','Adipisci architecto totam voluptas quisquam nemo autem.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(10,1,'Et.','Occaecati aspernatur cupiditate accusantium.','2022-11-09 09:21:36','2022-11-09 09:21:36',NULL),(26,18,'fgsb','cbbrgsabcsbdbr v','2022-11-20 12:07:27','2022-11-20 12:07:27','2022-11-20'),(27,18,'v xbxb','bxvxvb','2022-11-20 13:22:57','2022-11-20 13:22:57','2022-11-20'),(28,12,'first','first note','2022-11-20 13:27:56','2022-11-20 13:27:56','2022-11-20');
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,6 +204,7 @@ CREATE TABLE `password_resets` (
 
 LOCK TABLES `password_resets` WRITE;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` VALUES ('diemandan63@gmail.com','$2y$10$GaaBpA8.Pf3A42uN.Yy2Qeucwys/OfrNqaYhqgn572wG0JOr9mKCm','2022-11-19 19:04:55');
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +259,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +268,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (12,'diemandan','diemandan63@gmail.com',NULL,'$2y$10$jCm3mSwxgFCWJBnKhmwa.OisbHEHDSp/TfZyoeNyaRkTDcuwPVbMe',NULL,NULL,NULL),(17,'Myrtie Auer PhD','koreilly@example.org','2022-11-09 09:21:37','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','HJK8DNsiam','2022-11-09 09:21:37','2022-11-09 09:21:37');
+INSERT INTO `users` VALUES (12,'diemandan','diemandan63@gmail.com',NULL,'$2y$10$jCm3mSwxgFCWJBnKhmwa.OisbHEHDSp/TfZyoeNyaRkTDcuwPVbMe',NULL,NULL,NULL),(17,'Myrtie Auer PhD','koreilly@example.org','2022-11-09 09:21:37','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','HJK8DNsiam','2022-11-09 09:21:37','2022-11-09 09:21:37'),(18,'admin','admin@gmail.com','2022-11-20 11:56:30','$2y$10$B0M/pAqc0vK6021gSoNSAOQk3hQDEefx2Fdmc.e/Y.buPfBN.OAuy',NULL,'2022-11-20 11:52:24','2022-11-20 11:56:30');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -279,4 +281,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-19 15:59:58
+-- Dump completed on 2022-11-20 15:31:13

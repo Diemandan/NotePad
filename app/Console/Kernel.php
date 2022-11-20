@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\RemindMail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,8 +16,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command ('notepad:dump')->cron('0 17 * * *');
-        
+         $schedule->command ('notepad:dump')->cron('*/20 15-19 * * *');
+         $schedule->command ('queue:work')->cron('0 17 * * *');
+         $schedule->job(new RemindMail)->cron('0 17 * * *');
     }
 
     /**

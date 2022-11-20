@@ -14,11 +14,16 @@ class Note extends Model
      */
     protected $table='notes';
     
-    protected $fillable=['user_id','name','description'];
+    protected $fillable=['user_id','name','description','remind_at'];
     
     use HasFactory;
     public function comments()
     {
         return $this->hasMany(Comment::class,'note_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

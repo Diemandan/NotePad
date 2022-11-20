@@ -7,9 +7,9 @@
             </div>
         </div>
 
-        {{-- <div>
+        <div>
             <x-info.errors />
-        </div> --}}
+        </div>
 
         <form action="/notes/{{ $note->id }}/edit" method="get">
             <x-primary-button style="float:left; line-height: 10px">edit note</x-primary-button>
@@ -23,8 +23,9 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="h-60 p-2 text-bg-dark rounded-4">
+                <div class="h-60 p-2 text-bg-dark rounded-4 ">
                     <h5 class="mb-3">{{ $note->name }}</h5>
+                    <h6 class="mb-3">remind me:  {{ $note->remind_at }}</h6>
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <p class="mb-1  opacity-75 text-black text-center text-wrap ">
                             {{ $note->description }}</p>
@@ -40,6 +41,7 @@
         <div class="table-style" >
 
             <div >
+               
                 <form method="GET" action="/notes/{{$note->id}}/comments/txt">
                               
                     <input type="submit" value="save all comments as TXT" class="btn btn-success mt-4">

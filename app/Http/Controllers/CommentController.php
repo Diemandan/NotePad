@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use App\Models\Comment;
 use App\Exports\CommentExport;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCommentRequest;
+
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -48,9 +50,9 @@ class CommentController extends Controller
     Comment::create([
       'note_id' => $request->input('note_id'),
       'user_id' =>$request->input('user_id'),
-      'text' => $request->input('text'),
+      'text' => $request->input('text'), 
     ]);
-
+   
     return redirect()->route('show',['id' => $request->input('note_id')])
       ->with('success', 'Comment created.');
   }

@@ -21,12 +21,14 @@ class StoreNewNoteTest extends TestCase
                 'name' => 'testName1',
                 'description' => 'testDescription1',
                 'user_id' => auth()->id(),
+                'remind_at' => '2022-11-20',
             ]);
 
         $this->assertDatabaseHas('notes', [
             'user_id' => auth()->id(),
             'name' => 'testName1',
             'description' => 'testDescription1',
+            'remind_at' => '2022-11-20',
         ]);
     }
 }

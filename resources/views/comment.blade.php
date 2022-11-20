@@ -61,8 +61,7 @@
                     <input type="text" class="form-control" id="comment" name="text">
                     <label for="comment">Comment</label>
                 </div>
-
-
+            
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Save comment</button>
 
             </form>

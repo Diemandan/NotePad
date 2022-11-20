@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
