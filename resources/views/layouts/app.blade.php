@@ -27,16 +27,18 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                {{-- <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li> --}}
-                
+                <li class="nav-item"><a href="/notes/txt" class="btn btn-info mt-0">Save notes as TXT</a></li>
+                <li class="nav-item"><a href="/notes/excel" class="btn btn-info mt-0">save all notes as XLSX</a></li>
+
                 <div class="mt-2 space-y-3">
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="route('logout')" onclick="event.preventDefault();
-                            this.closest('form').submit();"> Log Out</a>
-                               
+                            <a href="route('logout')"
+                                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                Log Out</a>
+
                         </form>
                     </li>
                 </div>

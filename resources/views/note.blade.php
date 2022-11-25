@@ -42,15 +42,15 @@
 
             <div >
                
-                <form method="GET" action="/notes/{{$note->id}}/comments/txt">
+                <form method="GET" action="/notes/txt">
                               
-                    <input type="submit" value="save all comments as TXT" class="btn btn-success mt-4">
+                    <input type="submit" value="save all notes as TXT" class="btn btn-success mt-4">
                 </form>
         
             
-                <form method="GET" action="/notes/{{$note->id}}/comments/excel">
+                <form method="GET" action="/notes/excel">
                               
-                    <input type="submit" value="save all comments as XLSX" class="btn btn-success mt-4">
+                    <input type="submit" value="save all notes as XLSX" class="btn btn-success mt-4">
                 </form>
         
             </div>

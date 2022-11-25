@@ -7,7 +7,7 @@
             <x-info.errors />
         </div>
 
-     
+
         <form action="/create" method="GET">
             <input style="float: left;color: white" type="submit" value="Create new note" class="btn btn-info  mt-0">
         </form>
@@ -36,7 +36,7 @@
                             <x-button>
                                 <x-slot name="style">float: right;line-height: 10px;color: white</x-slot>
                                 <x-slot name="value">delete</x-slot>
-                                {{ '/notes/'.$note->id }}
+                                {{ '/notes/' . $note->id }}
                             </x-button>
                             <div class="h-100 p-5 bg-light border rounded-3">
                                 <p class="mb-1  opacity-75 text-black text-center text-wrap ">

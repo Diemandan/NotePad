@@ -19,19 +19,18 @@ class DbDump extends Command
      * @var string
      */
     protected $description = 'make dump of your dataBase to: storage/db-dumps';
-    
+
     /**
      * Execute the console command.
      *
      * @return int
      */
-    
+
     public function handle()
     {
-        $mysqldump='  mysqldump -u admin  -padmin notepad > /var/www/notepad/storage/db-dumps/notepad_'.date('d.m.y').'.sql';
+        $mysqldump = '  mysqldump -u admin  -padmin notepad > /var/www/notepad/storage/db-dumps/notepad_' . date('d.m.y') . '.sql';
         $output = array();
-        
-        exec ( $mysqldump,$output );
+
+        exec($mysqldump, $output);
     }
 }
-

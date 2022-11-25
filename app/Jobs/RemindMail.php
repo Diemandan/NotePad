@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Note;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\OrderShipped;
+use App\Mail\NoteShipped;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -34,10 +34,9 @@ class RemindMail implements ShouldQueue
      */
     public function handle()
     {
-        $order = Note::where('remind_at',date('Y-m-d',time()))->get();
-        foreach ($order as $oneorder )
-        {
-          Mail::to($oneorder->user)->send(new OrderShipped($oneorder));
-        }      
+        $notes = Note::where('remind_at', date('Y-m-d', time()))->get();
+        foreach ($notes as $onenote) {
+            Mail::to($onenote->user)->send(new NoteShipped($onenote));
+        }
     }
 }
