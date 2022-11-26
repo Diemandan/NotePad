@@ -7,14 +7,20 @@ use App\Models\Comment;
 use App\Exports\NoteExport;
 
 use App\Http\Requests\StoreNoteRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class NoteController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $notes = Note::where('user_id', auth()->id())->latest()->get();
+    if (!$request->sort) {
+      $sort = 'asc';
+    } else {
+      $sort = $request->sort;
+    }
+    $notes = Note::where('user_id', auth()->id())->orderBy('created_at', $sort)->get();
 
     return view('home', ['notes' => $notes]);
   }

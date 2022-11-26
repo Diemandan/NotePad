@@ -17,7 +17,8 @@
             <x-slot name="value">delete All Notes</x-slot>
             notes/all
         </x-button>
-
+        <div style="position: absolute; top:100px; left:750px; display: flex;gap:10px"><a href="/?sort=desc" class="btn btn-outline-dark btn-sm" aria-current="page">Показать новые</a>
+        <a href="/?sort=asc" class="btn btn-outline-dark btn-sm">показать старые</a></div>
         <div class=" p-5" style="background-color: rgb(206, 204, 204); ">
             @foreach ($notes as $note)
                 <div class="row justify-content-center mt-2">

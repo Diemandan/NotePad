@@ -15,12 +15,11 @@ use App\Models\Note;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [NoteController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('home');
+    ->middleware(['auth', 'verified'])->name('home');
 Route::get('/create', [NoteController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('create');
+    ->middleware(['auth'])->name('create');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/notes')->group(function () {
@@ -45,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [NoteController::class, 'delete'])
             ->name('delete');
         Route::delete('/{id}/comments/{comment_id}', [CommentController::class, 'delete',])
-            ->name('delete');      
+            ->name('delete');
     });
 });
 
