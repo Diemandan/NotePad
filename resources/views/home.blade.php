@@ -23,9 +23,10 @@
             @foreach ($notes as $note)
                 <div class="row justify-content-center mt-2">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="position: relative;">
                         <div class="h-60 p-2 text-bg-dark rounded-4">
                             <h5 class="mb-3">{{ $note->name }}</h5>
+                            <div style="position: absolute; top:7px; left:370px; "><h5 >comments: {{ $note->comments->count() }}</h5></div>
 
                             <form action="/notes/{{ $note->id }}" method="get">
                                 <x-primary-button style="float:left; line-height: 10px">open note</x-primary-button>
