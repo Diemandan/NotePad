@@ -26,8 +26,11 @@
                     Сортировать <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/?sort=desc">Показать новые</a></li>
-                    <li><a class="dropdown-item" href="/?sort=asc">показать старые</a></li>
+                    <li><a class="dropdown-item" href="/?sort=desc">Показать новые</a><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="/?sort=asc">показать старые</a><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="/?priority=low">низкий приоритет</a><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="/?priority=medium">средний приоритет</a><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="/?priority=high">высокий приоритет</a></li>
                 </ul>
             </div>
         </div>

@@ -29,9 +29,9 @@ Route::middleware(['auth'])->group(function () {
             ->middleware(['verified'])->name('update');
         Route::delete('/all', [NoteController::class, 'deleteAll'])
             ->name('deleteAll');
-        Route::get('/txt', [NoteController::class, 'savetext',])
+        Route::get('/txt', [NoteController::class, 'downloadtext',])
             ->name('notes.txt');
-        Route::get('/excel', [NoteController::class, 'saveexcel',])
+        Route::get('/excel', [NoteController::class, 'downloadexcel',])
             ->name('notes.excel');
         Route::get('/{id}/comments', [CommentController::class, 'show'])
             ->name('show.comment');

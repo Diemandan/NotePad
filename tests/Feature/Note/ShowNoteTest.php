@@ -7,6 +7,7 @@ use App\Models\Note;
 use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 class ShowNoteTest extends TestCase
 {
@@ -31,8 +32,8 @@ class ShowNoteTest extends TestCase
         $response = $this->actingAs($user)->withSession(['banned' => false])
             ->get('/notes/' . $note->id);
         $data = $response->getOriginalContent()->getData();
-            
-        $this->assertSame($note->id,$data['note']['id']);
+
+        $this->assertSame($note->id, $data['note']['id']);
     }
 
     public function testIncorrectResponse()
@@ -41,11 +42,28 @@ class ShowNoteTest extends TestCase
         $note = Note::factory()->create();
 
         $response = $this->actingAs($user)->withSession(['banned' => false])
-            ->get('/notes/' . ($note->id+1));
-        
+            ->get('/notes/' . ($note->id + 1));
+
         $response->assertStatus(500);
-      
+    }
+
+    public function testShowCorrectSort()
+    {
+        $user = User::factory()->create(['id' => 1]);
+        $notes = [Note::factory()->create(['user_id' => 1, 'id' => 19]), Note::factory()->create(['user_id' => 1, 'id' => 20]), Note::factory()->create(['user_id' => 1, 'id' => 21])];
+
+        $response = $this->actingAs($user)->withSession(['banned' => false])
+            ->get('/?sort=asc');
+        $this->assertSame(19, $response['notes'][0]['id']);
+    }
+
+    public function testShowCorrectPriority()
+    {
+        $user = User::factory()->create(['id' => 1]);
+        $notes = [Note::factory()->create(['user_id' => 1, 'id' => 19, 'priority' => 'low']), Note::factory()->create(['user_id' => 1, 'id' => 20]), Note::factory()->create(['user_id' => 1, 'id' => 21])];
+
+        $response = $this->actingAs($user)->withSession(['banned' => false])
+            ->get('/?priority=low');
+        $this->assertSame('low', $response['notes'][0]['priority']);
     }
 }
-
-?>
