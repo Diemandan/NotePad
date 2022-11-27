@@ -21,6 +21,7 @@ class UpdateNoteTest extends TestCase
                 'name' => 'testName1',
                 'description' => 'testDescription1',
                 'remind_at' => '2022-11-20',
+                'priority' => 'high',
                 ]);
 
         $note=Note::where('name', 'testName1')->select('id')->first();
@@ -31,6 +32,7 @@ class UpdateNoteTest extends TestCase
                 'description' => 'testDescription1',
                 'note_id' => $note->id,
                 'remind_at' => '2022-11-20',
+                'priority' => 'high',
                 ]);
 
         $this->assertDatabaseHas('notes', [
@@ -38,6 +40,7 @@ class UpdateNoteTest extends TestCase
             'name' => 'testName3',
             'description' => 'testDescription1',
             'remind_at' => '2022-11-20',
+            'priority' => 'high',
         ]);
     }
 }

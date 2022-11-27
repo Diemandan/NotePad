@@ -27,6 +27,7 @@ class StoreNoteRequest extends FormRequest
             'name' => 'required|string|min:3|max:10',
             'description' => 'required|string|min:6',
             'remind_at' => 'required',
+            'priority' => 'required',
         ];
     }
 }

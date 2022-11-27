@@ -16,7 +16,7 @@ class NoteController extends Controller
   public function index(Request $request)
   {
     if (!$request->sort) {
-      $sort = 'asc';
+      $sort = 'desc';
     } else {
       $sort = $request->sort;
     }
@@ -37,6 +37,7 @@ class NoteController extends Controller
       'description' => $request->input('description'),
       'user_id' => auth()->id(),
       'remind_at' => $request->input('remind_at'),
+      'priority' => $request->input('priority'),
     ]);
 
     return redirect()->route('home')->with('success', 'Note created.');
@@ -49,6 +50,7 @@ class NoteController extends Controller
     Note::where('id', $note_id)->update([
       'name' => $request->input('name'),
       'description' => $request->input('description'),
+      'priority' => $request->input('priority'),
     ]);
 
     return redirect()->route('show', ['id' => $note_id])->with('success', 'Note edit success.');

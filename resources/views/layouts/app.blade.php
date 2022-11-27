@@ -12,9 +12,7 @@
 
 <body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-    </script>
+   
 
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -25,11 +23,19 @@
                 <span class="fs-3">Your notepad</span>
             </a>
 
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills" style="display: flex;gap:10px">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/notes/txt" class="btn btn-info mt-0">Save notes as TXT</a></li>
-                <li class="nav-item"><a href="/notes/excel" class="btn btn-info mt-0">save all notes as XLSX</a></li>
-
+                
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownmenu" data-bs-toggle="dropdown" aria-expanded="false">
+                  Save as ..
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownmenu">
+                  <a class="dropdown-item" href="/notes/txt">Save notes as TXT</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/notes/excel">save all notes as XLSX</a>
+                  </div>
+                  </div>
                 <div class="mt-2 space-y-3">
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
@@ -48,7 +54,8 @@
 
 
     {{ $slot }}
-
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    </body>
 
 </html>
