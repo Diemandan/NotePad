@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/user', [NoteController::class, 'index']) ;
-
+// Route::get('/user', function (Request $request) {
+//     return App\Models\Note::where('user_id', 18)->get(); ;
+// });

@@ -1,5 +1,12 @@
 <x-app-layout>
 
+
+    @if (isset($notes[0]->user->role) and $notes[0]->user->role === 'admin')
+        <div class=" btn btn-dark" style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
+            <a href="/admin" class="nav-link active" aria-current="page">Admin panel</a>
+        </div>
+    @endif
+
     <div class="container">
 
 
@@ -26,10 +33,18 @@
                     Сортировать <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/?sort=desc">Показать новые</a><div class="dropdown-divider"></div></li>
-                    <li><a class="dropdown-item" href="/?sort=asc">показать старые</a><div class="dropdown-divider"></div></li>
-                    <li><a class="dropdown-item" href="/?priority=low">низкий приоритет</a><div class="dropdown-divider"></div></li>
-                    <li><a class="dropdown-item" href="/?priority=medium">средний приоритет</a><div class="dropdown-divider"></div></li>
+                    <li><a class="dropdown-item" href="/?sort=desc">Показать новые</a>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li><a class="dropdown-item" href="/?sort=asc">показать старые</a>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li><a class="dropdown-item" href="/?priority=low">низкий приоритет</a>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li><a class="dropdown-item" href="/?priority=medium">средний приоритет</a>
+                        <div class="dropdown-divider"></div>
+                    </li>
                     <li><a class="dropdown-item" href="/?priority=high">высокий приоритет</a></li>
                 </ul>
             </div>
@@ -72,5 +87,7 @@
             @endforeach
         </div>
     </div>
+
+
 
 </x-app-layout>

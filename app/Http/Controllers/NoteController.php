@@ -112,7 +112,7 @@ class NoteController extends Controller
         $filepath = '/var/www/notepad/storage/app/notes' . auth()->id() . '.txt';
 
         return response()
-            ->download($filepath, 'base txt_copy')
+            ->download($filepath, 'base txt_copy' . auth()->id())
             ->deleteFileAfterSend(true);
     }
 

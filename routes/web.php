@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\UserController;
 use App\Models\Note;
 
 /*
@@ -18,8 +19,10 @@ use App\Models\Note;
 
 Route::get('/', [NoteController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('home');
+Route::get('/admin', [UserController::class, 'showAll'])
+    ->middleware(['auth', 'admin'])->name('admin');
 Route::get('/create', [NoteController::class, 'create'])
-    ->middleware(['auth'])->name('create');
+    ->name('create');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/notes')->group(function () {
