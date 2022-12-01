@@ -27,4 +27,13 @@ class UserController extends Controller
             ->route('admin')
             ->with('success', 'User deleted with notes and comments.');
     }
+
+    public function userStatus(Request $request)
+    {
+        User::where('id', $request->userId)->update(['is_active' => $request->status]);
+
+        return redirect()
+            ->route('admin')
+            ->with('success', 'Status changed.');
+    }
 }

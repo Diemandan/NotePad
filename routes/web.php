@@ -23,6 +23,8 @@ Route::get('/admin', [UserController::class, 'showAll'])
     ->middleware(['auth', 'admin'])->name('admin');
 Route::get('/create', [NoteController::class, 'create'])
     ->name('create');
+Route::post('/admin/status', [UserController::class, 'userStatus'])
+    ->middleware(['auth', 'admin'])->name('user.status');
 Route::delete('/admin/{id}', [UserController::class, 'delete'])
     ->middleware(['auth', 'admin'])->name('user.delete');
 
