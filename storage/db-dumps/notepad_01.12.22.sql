@@ -151,7 +151,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` VALUES (1,3,'Nemo.','Odio voluptatem quas temporibus.','1988-09-08 09:09:16','2022-12-01 12:41:43','2000-05-25','medium'),(2,1,'Et.','Consequatur quaerat eos neque dolor.','1970-10-07 01:10:25','2022-12-01 12:41:43','2003-10-20','high'),(3,3,'Quia.','Magni quo iste consequatur ad dolores.','2017-06-08 23:06:19','2022-12-01 12:41:43','1974-04-01','low'),(4,2,'Ut.','Quia blanditiis hic earum.','2020-08-14 08:08:22','2022-12-01 12:41:43','2021-09-21','high'),(5,2,'Eos.','Voluptatibus aut excepturi dolorem et.','1971-11-02 09:11:51','2022-12-01 12:41:43','1994-04-08','high'),(6,2,'Vero.','Qui maxime quaerat temporibus.','1994-10-20 02:10:56','2022-12-01 12:41:43','1988-11-07','high'),(7,2,'Aut.','Dolorem maiores sunt et numquam id.','2004-01-30 01:01:56','2022-12-01 12:41:43','1985-04-20','high'),(8,1,'Non.','Tempore nostrum laboriosam dolorem illum dignissimos at.','2021-11-04 07:11:34','2022-12-01 12:41:43','1996-09-26','low'),(9,2,'Odit.','Ipsum consequatur repudiandae rerum qui.','2003-12-29 03:12:59','2022-12-01 12:41:43','1987-10-04','medium'),(10,2,'Eum.','Molestiae ducimus iusto ea quibusdam numquam.','1997-07-08 10:07:26','2022-12-01 12:41:43','2011-12-02','high');
+INSERT INTO `notes` VALUES (1,3,'Quia.','Ea qui maiores non ut.','1986-03-30 00:03:29','2022-12-01 14:30:51','1997-07-08','low'),(3,1,'Eum.','Magnam qui deserunt a amet molestias sit.','1998-09-09 09:09:21','2022-12-01 14:30:51','2017-01-11','low'),(4,3,'Aut.','Mollitia vel aliquid et.','2001-11-24 04:11:24','2022-12-01 14:30:51','2002-09-07','low'),(5,3,'Nisi.','Labore reprehenderit accusantium dolorem illum laudantium repellendus.','1998-06-11 01:06:03','2022-12-01 14:30:51','1981-07-16','high'),(6,3,'Et.','Ipsam ea distinctio asperiores voluptas eveniet.','1989-11-05 06:11:51','2022-12-01 14:30:51','1973-09-09','high'),(8,1,'Sint.','Voluptas ut accusantium repellendus et assumenda.','1988-04-03 23:04:07','2022-12-01 14:30:51','2012-03-03','low'),(9,1,'Rem.','Id ratione incidunt rerum nihil quae.','1994-05-03 08:05:52','2022-12-01 14:30:51','2022-01-11','medium'),(10,3,'Est.','Maiores enim at dignissimos doloremque et ipsum.','2018-08-08 23:08:29','2022-12-01 14:30:51','2009-03-19','high');
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','diemandan','diemandan63@gmail.com',NULL,'$2y$10$dZFsQs1xT8wF4CGLwqH8iOZZrX6ft3XJP7pjY6viHfjccTv30YjSq',NULL,NULL,NULL),(2,'customer','Pearlie Torphy','doyle.luella@example.net','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','oV0aEUntK5','2022-12-01 12:41:44','2022-12-01 12:41:44'),(3,'customer','Shayna Bernhard','colten.jacobs@example.net','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','jH5nyRbTiE','2022-12-01 12:41:44','2022-12-01 12:41:44'),(4,'customer','Alexane Klein','ukreiger@example.net','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','Il0aY1hzx9','2022-12-01 12:41:44','2022-12-01 12:41:44'),(5,'customer','Nona Goodwin','rhettinger@example.net','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','o7m7sJAJog','2022-12-01 12:41:44','2022-12-01 12:41:44'),(6,'customer','Demarcus Leffler Sr.','davion.funk@example.net','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','qiG4rEH4dp','2022-12-01 12:41:44','2022-12-01 12:41:44'),(7,'customer','Sabryna Bartoletti','rozella30@example.com','2022-12-01 12:41:44','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','nl0ikvycan','2022-12-01 12:41:44','2022-12-01 12:41:44'),(8,'customer','admin','admin@gmail.com',NULL,'$2y$10$blSQUHfhaRUvV8vYfTRDXO5SekSyWXL2hS0x96WfUEPO104GOEQ8e',NULL,'2022-12-01 13:10:13','2022-12-01 13:10:13');
+INSERT INTO `users` VALUES (1,'admin','diemandan','diemandan63@gmail.com',NULL,'$2y$10$GZMDP7GNBZzm5Q/tDifjEe9QvojbpkIdvR4H4TtBaGPGqlxKyyH12',NULL,NULL,NULL),(3,'customer','Antonio Wiegand','ebergnaum@example.org','2022-12-01 14:30:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','wv3nGsktBz','2022-12-01 14:30:51','2022-12-01 14:30:51'),(4,'customer','Dr. Deanna Ritchie','richmond.cummings@example.net','2022-12-01 14:30:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','yjFyY7oD7M','2022-12-01 14:30:51','2022-12-01 14:30:51'),(5,'customer','Armando Schuster','buster50@example.org','2022-12-01 14:30:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','kbkgW9Z7iJ','2022-12-01 14:30:51','2022-12-01 14:30:51'),(6,'customer','Lawson Mohr III','lorenz.smitham@example.net','2022-12-01 14:30:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','4LpSCZwmkI','2022-12-01 14:30:51','2022-12-01 14:30:51'),(7,'customer','Hal Lehner','maritza.kemmer@example.com','2022-12-01 14:30:51','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','92I3R8dsWl','2022-12-01 14:30:51','2022-12-01 14:30:51');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 16:00:02
+-- Dump completed on 2022-12-01 16:32:11

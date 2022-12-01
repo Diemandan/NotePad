@@ -23,6 +23,8 @@ Route::get('/admin', [UserController::class, 'showAll'])
     ->middleware(['auth', 'admin'])->name('admin');
 Route::get('/create', [NoteController::class, 'create'])
     ->name('create');
+Route::delete('/admin/{id}', [UserController::class, 'delete'])
+    ->middleware(['auth', 'admin'])->name('user.delete');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/notes')->group(function () {

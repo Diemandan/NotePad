@@ -12,7 +12,9 @@
 
 <body>
 
-
+    <div>
+        <x-info.errors />
+    </div>
 
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -43,7 +45,7 @@
         </header>
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h6 class="border-bottom pb-2 mb-0">Users of notes</h6>
+        <h6 class="border-bottom pb-2 mb-0">Users of notes {{ $users->count() }}</h6>
 
         @foreach ($users as $user)
             <div class="d-flex text-muted pt-3">
@@ -59,7 +61,11 @@
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between">
                         <strong class="text-gray-dark">{{ $user->name }}</strong>
-                        <a href="#">Delete this user</a>
+                        <x-button>
+                            <x-slot name="style">float: right;line-height: 10px;color: white</x-slot>
+                            <x-slot name="value">delete user</x-slot>
+                            {{ '/admin/' . $user->id }}
+                        </x-button>
                     </div>
                     <span class="d-block">{{ $user->email }}</span>
                 </div>
