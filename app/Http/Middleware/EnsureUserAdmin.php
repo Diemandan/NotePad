@@ -18,8 +18,7 @@ class EnsureUserAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $admin = User::select('id')->where('role', 'admin')->find(1);
-        if (auth()->id() == $admin->id) {
+        if (auth()->user()->role === 'admin') {
             return $next($request);
         } else {
             return  redirect()->route('home');

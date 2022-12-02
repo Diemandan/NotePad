@@ -18,38 +18,56 @@ use App\Models\Note;
 */
 
 Route::get('/', [NoteController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('home');
-Route::get('/admin', [UserController::class, 'showAll'])
-    ->middleware(['auth', 'admin'])->name('admin');
-Route::get('/create', [NoteController::class, 'create'])
-    ->name('create');
-Route::post('/admin/status', [UserController::class, 'userStatus'])
-    ->middleware(['auth', 'admin'])->name('user.status');
-Route::delete('/admin/{id}', [UserController::class, 'delete'])
-    ->middleware(['auth', 'admin'])->name('user.delete');
+    ->middleware(['auth', 'verified', 'activity'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
+Route::get('/create', [NoteController::class, 'create'])
+    ->middleware(['auth'])->name('create');
+
+Route::middleware('admin', 'auth')->group(function () {
+
+    Route::get('/admin', [UserController::class, 'showAll'])
+        ->name('admin');
+
+    Route::put('/admin/status', [UserController::class, 'userStatus'])
+        ->name('user.status');
+        
+    Route::delete('/admin/{id}', [UserController::class, 'delete'])
+        ->name('user.delete');
+});
+
+Route::middleware(['auth', 'activity'])->group(function () {
     Route::prefix('/notes')->group(function () {
+
         Route::post('', [NoteController::class, 'store'])
             ->middleware(['verified'])->name('store');
+
         Route::put('', [NoteController::class, 'update'])
             ->middleware(['verified'])->name('update');
+
         Route::delete('/all', [NoteController::class, 'deleteAll'])
             ->name('deleteAll');
+
         Route::get('/txt', [NoteController::class, 'downloadtext',])
             ->name('notes.txt');
+
         Route::get('/excel', [NoteController::class, 'downloadexcel',])
             ->name('notes.excel');
+
         Route::get('/{id}/comments', [CommentController::class, 'show'])
             ->name('show.comment');
+
         Route::post('/{id}/comments', [CommentController::class, 'create',])
             ->name('create.comment');
+
         Route::get('/{id}', [NoteController::class, 'show'])
             ->name('show');
+
         Route::get('/{id}/edit', [NoteController::class, 'edit'])
             ->name('edit');
+
         Route::delete('/{id}', [NoteController::class, 'delete'])
             ->name('delete');
+            
         Route::delete('/{id}/comments/{comment_id}', [CommentController::class, 'delete',])
             ->name('delete');
     });

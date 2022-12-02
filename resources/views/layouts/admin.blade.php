@@ -65,7 +65,8 @@
                         @if ($user->is_active)
                             <div class="form-check form-switch"
                                 style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
-                                <form action="/admin/status" method="post">
+                                <form action="/admin/status" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <input type="hidden" name="userId" value={{ $user->id }}>
                                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
@@ -77,7 +78,8 @@
                         @else
                             <div class="form-check form-switch"
                                 style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
-                                <form action="/admin/status" method="post">
+                                <form action="/admin/status" method="POST">
+                                    @method('PUT')
                                     @csrf
                                     <input type="hidden" name="userId" value={{ $user->id }}>
                                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">

@@ -47,16 +47,6 @@ class ShowNoteTest extends TestCase
         $response->assertStatus(500);
     }
 
-    public function testShowCorrectSort()
-    {
-        $user = User::factory()->create(['id' => 1]);
-        $notes = [Note::factory()->create(['user_id' => 1, 'id' => 19]), Note::factory()->create(['user_id' => 1, 'id' => 20]), Note::factory()->create(['user_id' => 1, 'id' => 21])];
-
-        $response = $this->actingAs($user)->withSession(['banned' => false])
-            ->get('/?sort=asc');
-        $this->assertSame(19, $response['notes'][0]['id']);
-    }
-
     public function testShowCorrectPriority()
     {
         $user = User::factory()->create(['id' => 1]);
