@@ -27,7 +27,7 @@
 
             <ul class="nav nav-pills" style="display: flex;gap:10px">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-
+                <li class="nav-item"><a href="/admin/congratulate" class="nav-link active" aria-current="page">congratulate</a></li>
 
                 <div class="mt-2 space-y-3">
                     <li class="nav-item">

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\Congratulation;
 use App\Jobs\RemindMail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -16,8 +17,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command ('notepad:dump')->cron('0 10-15 10,25 * *');
-         $schedule->job(new RemindMail )->cron('*/40 18-21 * * *');
+        $schedule->command('notepad:dump')->cron('0 10-15 10,25 * *');
+        $schedule->job(new RemindMail)->cron('*/40 18-21 * * *');
+        if (env('CONGRATULATE_WITH_BIRTHDAY')) {
+            $schedule->job(new Congratulation)->cron('1 0 * * *');
+        }
     }
 
     /**
@@ -27,7 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
