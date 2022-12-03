@@ -88,7 +88,7 @@ CREATE TABLE `jobs` (
   `created_at` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `jobs_queue_index` (`queue`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_26_185612_create_notes_table',1),(6,'2022_11_04_210152_user_id',1),(7,'2022_11_06_193630_create_comments_table',1),(8,'2022_11_19_175526_reminder',1),(9,'2022_11_21_225558_create_jobs_table',1),(10,'2022_11_27_130219_priority',1),(11,'2022_12_01_132043_user_role',1),(12,'2022_12_01_153429_active_user_column',1),(13,'2022_12_03_131549_user_birth_date_add',2);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2022_10_26_185612_create_notes_table',1),(6,'2022_11_04_210152_user_id',1),(7,'2022_11_06_193630_create_comments_table',1),(8,'2022_11_19_175526_reminder',1),(9,'2022_11_21_225558_create_jobs_table',1),(10,'2022_11_27_130219_priority',1),(11,'2022_12_01_132043_user_role',1),(12,'2022_12_01_153429_active_user_column',1),(21,'2022_12_03_131549_user_birth_date_add',2),(22,'2022_12_03_181836_create_notifications_table',2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,6 +153,33 @@ LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
 INSERT INTO `notes` VALUES (1,3,'Id.','Esse repellendus deleniti culpa.','2015-05-07 02:05:10','2022-12-01 14:36:46','1980-06-28','high'),(2,3,'Quo.','Dolore laudantium qui fugiat.','1987-07-21 06:07:36','2022-12-01 14:36:46','2008-07-27','high'),(3,3,'Et.','Sint molestiae quisquam sed et.','2014-08-18 00:08:25','2022-12-01 14:36:46','2007-06-22','low'),(4,3,'Hic.','Consequatur neque a voluptatibus.','2016-05-31 09:05:05','2022-12-01 14:36:46','2004-04-29','high'),(5,3,'Qui.','Inventore enim vitae et.','2019-02-13 06:02:03','2022-12-01 14:36:46','2011-08-11','medium'),(6,1,'Non.','Nam ut earum ut hic.','1977-11-10 02:11:07','2022-12-01 14:36:46','1994-07-04','medium'),(7,3,'Sit.','Magnam error possimus est.','2010-07-08 23:07:50','2022-12-01 14:36:46','2010-08-18','low'),(8,1,'Nam.','Enim sed et culpa eos.','1997-11-06 07:11:39','2022-12-01 14:36:46','1975-04-30','low'),(9,3,'Aut.','Itaque corrupti reiciendis fugit quia ipsam dolorem.','2010-09-13 02:09:32','2022-12-01 14:36:46','2001-06-06','medium'),(10,1,'Iste.','Delectus quas quia qui laudantium sit.','2002-05-09 06:05:58','2022-12-01 14:36:46','2015-02-20','high'),(11,1,'diemandan','bootstrap note','2022-12-02 16:24:44','2022-12-02 16:24:44','2022-12-09','low');
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notifications` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+INSERT INTO `notifications` VALUES (1,'1','first note','2022-12-03 18:38:48','2022-12-03 18:38:48'),(2,'2','2 description','2022-12-03 18:39:02','2022-12-03 18:39:02'),(3,'3','description of first note','2022-12-03 18:39:19','2022-12-03 18:39:19');
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -242,7 +269,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','diemandan','diemandan63@gmail.com',NULL,'1',NULL,'$2y$10$xNflP/coCvZ7zpFQ77GfD.J7AxuYqzB6U0FIz/nD3baY5F0nCeTM2',NULL,NULL,NULL),(3,'customer','Jamie Schuppe','rklocko@example.com',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','vzrAvfsylE','2022-12-01 14:36:47','2022-12-02 17:54:03'),(4,'customer','Prof. Augustus Goodwin','una31@example.net',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','2FGjBXWqHm','2022-12-01 14:36:47','2022-12-02 18:13:17'),(5,'customer','Izaiah Collins','melvina.glover@example.com',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','em2zep6Yg5','2022-12-01 14:36:47','2022-12-02 18:13:19'),(6,'customer','Dr. Rafael Kessler Jr.','waino90@example.net',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','dgBW2DQdip','2022-12-01 14:36:47','2022-12-02 18:13:20'),(13,'customer','first','1@gmail.com','2000-12-03','1',NULL,'$2y$10$ivwGTI2r85akrgrGFZLEuOJB6xLtvkDsbBPICk9sRheQdskwRVRYy',NULL,'2022-12-03 13:33:17','2022-12-03 13:33:17');
+INSERT INTO `users` VALUES (1,'admin','diemandan','diemandan63@gmail.com',NULL,'1',NULL,'$2y$10$xNflP/coCvZ7zpFQ77GfD.J7AxuYqzB6U0FIz/nD3baY5F0nCeTM2',NULL,NULL,NULL),(3,'customer','Jamie Schuppe','rklocko@example.com',NULL,'1','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','vzrAvfsylE','2022-12-01 14:36:47','2022-12-03 15:51:17'),(4,'customer','Prof. Augustus Goodwin','una31@example.net',NULL,'1','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','2FGjBXWqHm','2022-12-01 14:36:47','2022-12-03 15:51:21'),(5,'customer','Izaiah Collins','melvina.glover@example.com',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','em2zep6Yg5','2022-12-01 14:36:47','2022-12-02 18:13:19'),(6,'customer','Dr. Rafael Kessler Jr.','waino90@example.net',NULL,'0','2022-12-01 14:36:47','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','dgBW2DQdip','2022-12-01 14:36:47','2022-12-02 18:13:20'),(13,'customer','first','1@gmail.com',NULL,'1',NULL,'$2y$10$ivwGTI2r85akrgrGFZLEuOJB6xLtvkDsbBPICk9sRheQdskwRVRYy',NULL,'2022-12-03 13:33:17','2022-12-03 15:21:17');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -255,4 +282,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-03 16:52:59
+-- Dump completed on 2022-12-03 21:37:56

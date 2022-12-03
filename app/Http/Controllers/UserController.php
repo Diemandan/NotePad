@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $users = User::where('role', 'customer')->get();
 
-        return view('layouts.admin', compact('users'));
+        return view('admin.customerUsers', compact('users'));
     }
 
     public function delete($id)
@@ -39,4 +39,6 @@ class UserController extends Controller
             ->route('admin')
             ->with('success', 'Status changed.');
     }
+
+   
 }

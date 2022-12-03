@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Models\Note;
 
@@ -30,10 +31,16 @@ Route::middleware('admin', 'auth')->group(function () {
 
     Route::put('/admin/status', [UserController::class, 'userStatus'])
         ->name('user.status');
-        
+
     Route::delete('/admin/{id}', [UserController::class, 'delete'])
         ->name('user.delete');
+
+
+
+    Route::post('/admin/notifications', [NotificationController::class, 'create']);
 });
+
+Route::get('/admin/notifications', [NotificationController::class, 'show'])->name('admin.show');
 
 Route::middleware(['auth', 'activity'])->group(function () {
     Route::prefix('/notes')->group(function () {
@@ -67,7 +74,7 @@ Route::middleware(['auth', 'activity'])->group(function () {
 
         Route::delete('/{id}', [NoteController::class, 'delete'])
             ->name('delete');
-            
+
         Route::delete('/{id}/comments/{comment_id}', [CommentController::class, 'delete',])
             ->name('delete');
     });

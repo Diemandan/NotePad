@@ -5,6 +5,10 @@
         <div class=" btn btn-dark" style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
             <a href="/admin" class="nav-link active" aria-current="page">Admin panel</a>
         </div>
+    @else
+        <div class=" btn btn-dark" style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
+            <a href="/admin/notifications" class="nav-link active" aria-current="page">Notifications from admin</a>
+        </div>
     @endif
 
     <div class="container">

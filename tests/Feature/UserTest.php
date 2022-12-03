@@ -3,13 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Models\Note;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class AdminTest extends TestCase
+class UserTest extends TestCase
 {
     use RefreshDatabase;
     /**
