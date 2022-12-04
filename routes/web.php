@@ -35,9 +35,7 @@ Route::middleware('admin', 'auth')->group(function () {
     Route::delete('/admin/{id}', [UserController::class, 'delete'])
         ->name('user.delete');
 
-
-
-    Route::post('/admin/notifications', [NotificationController::class, 'create']);
+        Route::post('/admin/notifications', [NotificationController::class, 'create']);
 });
 
 Route::get('/admin/notifications', [NotificationController::class, 'show'])->name('admin.show');
