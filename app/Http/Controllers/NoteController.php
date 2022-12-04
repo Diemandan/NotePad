@@ -7,6 +7,8 @@ use App\Models\Comment;
 use App\Exports\NoteExport;
 
 use App\Http\Requests\StoreNoteRequest;
+use App\Models\Notification;
+use App\Models\NotificationStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,6 +18,8 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         $notes = Note::where('user_id', auth()->id())->get();
+        
+        $unreadcount=(new NotificationController)->unreadNotificationsCount();
 
         if ($request->has('sort')) {
             $notes = Note::where('user_id', auth()->id())
@@ -25,7 +29,7 @@ class NoteController extends Controller
             $notes = $notes->where('priority', $request->priority);
         }
 
-        return view('home', ['notes' => $notes]);
+        return view('home', ['notes' => $notes, 'unread' => $unreadcount]);
     }
 
     public function create()
