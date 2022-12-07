@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Comment;
 use Doctrine\DBAL\Schema\Sequence;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,9 +19,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=>fake()->randomElement([1,2,3]),
-            'note_id'=>fake()->randomElement([1,2,3]) ,
-            'text'=>fake()->sentence(5),
+            'user_id' => fake()->randomElement([1, 2, 3]),
+            'note_id' => fake()->randomElement([1, 2, 3]),
+            'text' => fake()->sentence(5),
         ];
     }
 }

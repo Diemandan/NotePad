@@ -7,8 +7,6 @@ use App\Models\Comment;
 use App\Exports\NoteExport;
 
 use App\Http\Requests\StoreNoteRequest;
-use App\Models\Notification;
-use App\Models\NotificationStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,12 +17,13 @@ class NoteController extends Controller
     {
         $notes = Note::where('user_id', auth()->id())->get();
         
-        $unreadcount=(new NotificationController)->unreadNotificationsCount();
+        $unreadcount=(new NotificationController)->getUnreadNotificationsCount();
 
         if ($request->has('sort')) {
             $notes = Note::where('user_id', auth()->id())
                 ->orderBy('created_at', $request->sort)->get();
         }
+
         if ($request->has('priority')) {
             $notes = $notes->where('priority', $request->priority);
         }
@@ -77,6 +76,7 @@ class NoteController extends Controller
     public function show($id)
     {
         $note = Note::find($id);
+
         $comments = $note->comments;
 
         return view('note', ['note' => $note, 'comments' => $comments]);
@@ -95,6 +95,7 @@ class NoteController extends Controller
     public function deleteAll()
     {
         $userId = auth()->id();
+
         Note::where('user_id', '=', $userId)->delete();
         Comment::where('user_id', '=', $userId)->delete();
 
@@ -106,6 +107,7 @@ class NoteController extends Controller
     public function downloadText()
     {
         $notes = Note::where('user_id', auth()->id())->get();
+
         $content = '';
 
         foreach ($notes as $note) {
@@ -113,10 +115,10 @@ class NoteController extends Controller
         }
 
         Storage::put('notes' . auth()->id() . '.txt', $content);
+
         $filepath = '/var/www/notepad/storage/app/notes' . auth()->id() . '.txt';
 
-        return response()
-            ->download($filepath, 'base txt_copy' . auth()->id())
+        return response()->download($filepath, 'base txt_copy' . auth()->id())
             ->deleteFileAfterSend(true);
     }
 

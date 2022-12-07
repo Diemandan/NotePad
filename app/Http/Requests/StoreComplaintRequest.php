@@ -24,7 +24,7 @@ class StoreComplaintRequest extends FormRequest
     public function rules()
     {
         return [
-            'userId' => 'required|string',
+            'userId' => 'required',
             'complaint' => 'required|string|max:150',
         ];
     }

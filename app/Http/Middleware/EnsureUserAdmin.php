@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EnsureUserAdmin
 {
@@ -18,7 +17,7 @@ class EnsureUserAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role === 'admin') {
+        if (auth()->user()->role === User::ROLE) {
             return $next($request);
         } else {
             return  redirect()->route('home');

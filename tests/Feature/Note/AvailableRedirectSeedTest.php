@@ -35,6 +35,7 @@ class AvailableRedirectSeed extends TestCase
     public function testSeedingNotes()
     {
         $this->seed();
+        
         $this->assertDatabaseCount('notes', 10);
     }
 

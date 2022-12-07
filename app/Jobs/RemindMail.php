@@ -35,6 +35,7 @@ class RemindMail implements ShouldQueue
     public function handle()
     {
         $notes = Note::where('remind_at', date('Y-m-d', time()))->get();
+        
         foreach ($notes as $onenote) {
             Mail::to($onenote->user)->send(new NoteShipped($onenote));
         }

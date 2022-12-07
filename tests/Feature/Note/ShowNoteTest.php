@@ -31,6 +31,7 @@ class ShowNoteTest extends TestCase
 
         $response = $this->actingAs($user)->withSession(['banned' => false])
             ->get('/notes/' . $note->id);
+
         $data = $response->getOriginalContent()->getData();
 
         $this->assertSame($note->id, $data['note']['id']);
@@ -54,6 +55,7 @@ class ShowNoteTest extends TestCase
 
         $response = $this->actingAs($user)->withSession(['banned' => false])
             ->get('/?priority=low');
+            
         $this->assertSame('low', $response['notes'][0]['priority']);
     }
 }

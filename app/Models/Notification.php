@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
-    
-    protected $fillable=['title','description'];
+
+    protected $fillable = [
+        'title', 
+        'description'
+    ];
 
     public function notificationStatus()
     {
-        return $this->hasMany(NotificationStatus::class,'notification_id','id');
+        return $this->hasMany(NotificationStatus::class, 'notification_id', 'id');
     }
-
-
-   
 }

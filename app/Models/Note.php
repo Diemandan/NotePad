@@ -12,14 +12,20 @@ class Note extends Model
      *
      * @var string
      */
-    protected $table='notes';
-    
-    protected $fillable=['user_id','name','description','remind_at','priority'];
-    
+    protected $table = 'notes';
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'description',
+        'remind_at',
+        'priority'
+    ];
+
     use HasFactory;
     public function comments()
     {
-        return $this->hasMany(Comment::class,'note_id','id');
+        return $this->hasMany(Comment::class, 'note_id', 'id');
     }
 
     public function user()

@@ -36,6 +36,7 @@ class Congratulation implements ShouldQueue
     {
         $users = User::whereMonth('birth_date', date('m'))
             ->whereDay('birth_date', date('d'))->get();
+            
         foreach ($users as $user) {
             Mail::to($user)->send(new BirthCongratulation($user));
         }

@@ -6,9 +6,10 @@
             <h1 class="h2">Customer notifications</h1>
         </div>
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">notifications of notes {{ $notifications->count() }}</h6>
+            <h6 class="border-bottom pb-2 mb-0">notifications of notes {{ $allNotificationsWithReadStatus->count() }}
+            </h6>
 
-            @foreach ($notifications as $notification)
+            @foreach ($allNotificationsWithReadStatus as $notification)
                 <div class="d-flex text-muted pt-3" style="position: relative;">
                     <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
@@ -22,9 +23,6 @@
                     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                         <div class="d-flex justify-content-between">
                             <strong class="text-gray-dark">{{ $notification->description }}</strong>
-
-
-
 
                             @if ($notification->readStatus)
                                 <div class="form-check form-switch"
@@ -45,11 +43,9 @@
                                             data-type="trSpan" data-selected="false"> </ya-tr-span>
                                         <ya-tr-span data-index="34-1" data-translated="true" data-source-lang="en"
                                             data-target-lang="ru" data-value="Button " data-translation="Кнопка "
-                                            data-ch="0" data-type="trSpan" data-selected="false">Прочитано </ya-tr-span>
+                                            data-ch="0" data-type="trSpan" data-selected="false">Прочитано
+                                        </ya-tr-span>
                                     </button>
-
-
-
                                 </div>
                             @else
                                 <div class="form-check form-switch"
@@ -67,12 +63,11 @@
                                                 d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z" />
                                         </svg>
 
-                                        <button type="submit" name="status" value="0"
+                                        <button type="submit" name="status" value="1"
                                             class="btn btn-primary btn-sm">Отметить как прочитано</button>
                                     </form>
                                 </div>
                             @endif
-
 
                         </div>
                         <span class="d-block">{{ $notification->id }}</span>
@@ -80,11 +75,7 @@
                 </div>
             @endforeach
         </div>
-
-
         <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-
     </main>
 
 </x-app-layout>

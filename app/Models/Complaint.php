@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Complaint extends Model
 {
-    protected $fillable=['user_id','description'];
+    protected $fillable = [
+        'user_id',
+        'description'
+    ];
 
     use HasFactory;
-
 }

@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('notepad:dump')->cron('0 10-15 10,25 * *');
         $schedule->job(new RemindMail)->cron('*/40 18-21 * * *');
+        
         if (env('CONGRATULATE_WITH_BIRTHDAY')) {
             $schedule->job(new Congratulation)->cron('1 0 * * *');
         }

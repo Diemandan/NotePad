@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('note_id');
             $table->text('text');
             $table->timestamps();
-            
         });
     }
 

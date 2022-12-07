@@ -21,6 +21,7 @@ class DeleteNoteTest extends TestCase
             ->delete('/notes/' . $note->id);
 
         $this->assertDatabaseMissing('notes', ['id' => $note->id]);
+
         $response->assertRedirect('/');
     }
 
@@ -32,6 +33,7 @@ class DeleteNoteTest extends TestCase
             ->delete('/notes/all');
             
         $this->assertDatabaseMissing('notes', ['user_id' => $user->id]);
+        
         $response->assertRedirect('/');
     }
 }
