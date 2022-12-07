@@ -24,7 +24,7 @@
             </a>
 
             <ul class="nav nav-pills" style="display: flex;gap:10px">
-                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/complaints" class="nav-link active" aria-current="page">Complaint to admin</a></li>
 
                 <div class="dropdown">
                     <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownmenu"

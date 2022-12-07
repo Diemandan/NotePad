@@ -6,6 +6,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Models\Note;
+use App\Models\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,21 +29,23 @@ Route::middleware('admin', 'auth')->group(function () {
 
     Route::get('/admin', [UserController::class, 'showAll'])
         ->name('admin');
-
     Route::put('/admin/status', [UserController::class, 'userStatus'])
         ->name('user.status');
-
     Route::delete('/admin/{id}', [UserController::class, 'delete'])
         ->name('user.delete');
-
     Route::post('/admin/notifications', [NotificationController::class, 'create']);
+    Route::get('/admin/complaints', [NotificationController::class, 'showComplaints']);
 });
 
 
-Route::post('/admin/notification/status', [NotificationController::class, 'notificationStatus'])->middleware(['auth', 'activity']);
-
-Route::get('/admin/notifications', [NotificationController::class, 'show'])->name('admin.show')->middleware(['auth', 'activity']);
-
+Route::post('/admin/notification/status', [NotificationController::class, 'notificationStatus'])
+    ->middleware(['auth', 'activity']);
+Route::get('/admin/notifications', [NotificationController::class, 'show'])
+    ->middleware(['auth', 'activity'])->name('admin.show');
+Route::view('/complaints', 'user.complaint')
+    ->middleware(['auth', 'activity'])->name('complaint');
+Route::post('/complaints', [NotificationController::class, 'createComplaint'])
+    ->middleware(['auth', 'activity']);
 
 Route::middleware(['auth', 'activity'])->group(function () {
     Route::prefix('/notes')->group(function () {

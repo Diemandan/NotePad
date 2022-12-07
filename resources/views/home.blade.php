@@ -6,7 +6,7 @@
             <a href="/admin" class="nav-link active" aria-current="page">Admin panel</a>
         </div>
     @else
-        <div class=" btn btn-dark" style="position: absolute; top:16px; left:600px; display: flex;gap:10px">
+        <div class=" btn btn-dark" style="position: absolute; top:16px; left:500px; display: flex;gap:10px">
             <a href="/admin/notifications" class="nav-link active" aria-current="page">Notifications from admin</a>
             <div style="position: absolute; top:-5px; left:210px; ">
                 <h5 class="btn btn-primary btn-sm">Unread:<span class="badge bg-secondary">

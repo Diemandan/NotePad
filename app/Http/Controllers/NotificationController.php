@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Notification;
 use App\Models\NotificationStatus;
+use App\Models\Complaint;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNotificationRequest;
+use App\Http\Requests\StoreComplaintRequest;
 
 class NotificationController extends Controller
 {
@@ -32,16 +35,29 @@ class NotificationController extends Controller
 
     public function notificationStatus(Request $request)
     {
-        $request->validate([
-            'notificationId' => 'required|integer',
-            'userId' => 'required|integer',
-        ]);
-
         NotificationStatus::updateOrCreate([
             'notification_id' => $request->notificationId,
             'read_by_user' => $request->userId
         ]);
+        
         return redirect()->route('admin.show');
+    }
+
+    public function createComplaint(StoreComplaintRequest $request)
+    {
+        Complaint::create([
+            'user_id' => $request->userId,
+            'description' => $request->complaint,
+        ]);
+
+        return redirect()->route('home');
+    }
+
+    public function showComplaints()
+    {
+        $complaints = Complaint::all();
+
+        return view('admin.complaints', compact('complaints'));
     }
 
     public function unreadNotificationsCount()
