@@ -115,7 +115,7 @@ CREATE TABLE `jobs` (
   `created_at` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `jobs_queue_index` (`queue`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `notes` (
   `remind_at` date DEFAULT NULL,
   `priority` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'high',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` VALUES (1,3,'Id.','Esse repellendus deleniti culpa.','2015-05-07 02:05:10','2022-12-01 14:36:46','1980-06-28','high'),(2,3,'Quo.','Dolore laudantium qui fugiat.','1987-07-21 06:07:36','2022-12-01 14:36:46','2008-07-27','high'),(3,3,'Et.','Sint molestiae quisquam sed et.','2014-08-18 00:08:25','2022-12-01 14:36:46','2007-06-22','low'),(4,3,'Hic.','Consequatur neque a voluptatibus.','2016-05-31 09:05:05','2022-12-01 14:36:46','2004-04-29','high'),(5,3,'Qui.','Inventore enim vitae et.','2019-02-13 06:02:03','2022-12-01 14:36:46','2011-08-11','medium'),(6,1,'Non.','Nam ut earum ut hic.','1977-11-10 02:11:07','2022-12-01 14:36:46','1994-07-04','medium'),(7,3,'Sit.','Magnam error possimus est.','2010-07-08 23:07:50','2022-12-01 14:36:46','2010-08-18','low'),(8,1,'Nam.','Enim sed et culpa eos.','1997-11-06 07:11:39','2022-12-01 14:36:46','1975-04-30','low'),(9,3,'Aut.','Itaque corrupti reiciendis fugit quia ipsam dolorem.','2010-09-13 02:09:32','2022-12-01 14:36:46','2001-06-06','medium'),(10,1,'Iste.','Delectus quas quia qui laudantium sit.','2002-05-09 06:05:58','2022-12-01 14:36:46','2015-02-20','high'),(11,1,'diemandan','bootstrap note','2022-12-02 16:24:44','2022-12-02 16:24:44','2022-12-09','low'),(12,13,'first','first note','2022-12-04 17:45:44','2022-12-04 17:45:44','2022-12-14','low');
+INSERT INTO `notes` VALUES (1,3,'Id.','Esse repellendus deleniti culpa.','2015-05-07 02:05:10','2022-12-01 14:36:46','1980-06-28','high'),(2,3,'Quo.','Dolore laudantium qui fugiat.','1987-07-21 06:07:36','2022-12-01 14:36:46','2008-07-27','high'),(3,3,'Et.','Sint molestiae quisquam sed et.','2014-08-18 00:08:25','2022-12-01 14:36:46','2007-06-22','low'),(4,3,'Hic.','Consequatur neque a voluptatibus.','2016-05-31 09:05:05','2022-12-01 14:36:46','2004-04-29','high'),(5,3,'Qui.','Inventore enim vitae et.','2019-02-13 06:02:03','2022-12-01 14:36:46','2011-08-11','medium'),(6,1,'Non.','Nam ut earum ut hic.','1977-11-10 02:11:07','2022-12-01 14:36:46','1994-07-04','medium'),(7,3,'Sit.','Magnam error possimus est.','2010-07-08 23:07:50','2022-12-01 14:36:46','2010-08-18','low'),(8,1,'Nam.','Enim sed et culpa eos.','1997-11-06 07:11:39','2022-12-01 14:36:46','1975-04-30','low'),(9,3,'Aut.','Itaque corrupti reiciendis fugit quia ipsam dolorem.','2010-09-13 02:09:32','2022-12-01 14:36:46','2001-06-06','medium'),(10,1,'Iste.','Delectus quas quia qui laudantium sit.','2002-05-09 06:05:58','2022-12-01 14:36:46','2015-02-20','high'),(11,1,'diemandan','bootstrap note','2022-12-02 16:24:44','2022-12-02 16:24:44','2022-12-09','low'),(12,13,'first','first note','2022-12-04 17:45:44','2022-12-04 17:45:44','2022-12-14','low'),(13,14,'diemandan','ghsghs','2022-12-18 12:58:05','2022-12-18 12:58:05','2022-12-14','low');
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `notification_statuses` (
   `notification_id` int NOT NULL,
   `read_by_user` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `notification_statuses` (
 
 LOCK TABLES `notification_statuses` WRITE;
 /*!40000 ALTER TABLE `notification_statuses` DISABLE KEYS */;
-INSERT INTO `notification_statuses` VALUES (22,1,13),(24,2,13),(25,3,13),(26,4,13),(27,1,14),(28,2,14);
+INSERT INTO `notification_statuses` VALUES (42,1,14),(43,4,14),(44,3,14);
 /*!40000 ALTER TABLE `notification_statuses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07 22:53:25
+-- Dump completed on 2022-12-24 20:25:58

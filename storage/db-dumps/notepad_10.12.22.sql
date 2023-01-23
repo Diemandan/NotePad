@@ -115,7 +115,7 @@ CREATE TABLE `jobs` (
   `created_at` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `jobs_queue_index` (`queue`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +194,7 @@ CREATE TABLE `notification_statuses` (
   `notification_id` int NOT NULL,
   `read_by_user` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `notification_statuses` (
 
 LOCK TABLES `notification_statuses` WRITE;
 /*!40000 ALTER TABLE `notification_statuses` DISABLE KEYS */;
-INSERT INTO `notification_statuses` VALUES (22,1,13),(24,2,13),(25,3,13),(26,4,13),(27,1,14),(28,2,14);
+INSERT INTO `notification_statuses` VALUES (42,1,14),(43,4,14),(44,3,14);
 /*!40000 ALTER TABLE `notification_statuses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07 22:53:25
+-- Dump completed on 2022-12-10 16:00:02
