@@ -1,0 +1,97 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: notepad
+    container_name: notepad-app
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - db
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    # command: php /var/www/artisan schedule:work
+    networks:
+      - notepad
+
+  scheduler:
+    image: notepad
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+    ## for the scheduler we use an infinite while loop
+    entrypoint: sh -c "while true; do php /var/www/artisan schedule:run --verbose & sleep 60; done"
+
+  db:
+    image: mysql:8.0
+    container_name: notepad-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql/data:/var/lib/mysql
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      - ./docker-compose/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+    networks:
+      - notepad
+
+   
+  queue:
+    image: php:8.2-fpm-alpine
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    command: php /var/www/artisan queue:work --sleep=3 --tries=3
+    networks:
+      - notepad
+
+  nginx:
+    image: nginx:alpine
+    container_name: notepad-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - notepad
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+    - PMA_ARBITRARY=1
+    restart: always
+    ports:
+    - 8080:80
+    volumes:
+    - /sessions
+    networks:
+      - notepad
+
+  redis:
+    image: redis:alpine
+    container_name: notepad_redis
+    ports:
+      - "6382:6379"
+    networks:
+      - notepad
+
+
+networks:
+  notepad:
+    driver: bridge
+
