@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Notification;
-use App\Models\NotificationStatus;
-use App\Models\Complaint;
 use App\Models\User;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\StoreComplaintRequest;
+use App\Repositories\NotificationRepository;
+use App\Services\NotificationService;
 
 class NotificationController extends Controller
 {
-    public function show()
+    public function show(NotificationService $notificationService)
     {
-        $allNotificationsWithReadStatus = $this->notificationsWithReadStatus();
+        $allNotificationsWithReadStatus = $notificationService->notificationsWithReadStatus();
 
         if (Auth()->user()->role === User::ROLE) {
 
@@ -27,75 +25,32 @@ class NotificationController extends Controller
         }
     }
 
-    public function create(StoreNotificationRequest $request)
+    public function create(NotificationRepository $notificationRepository, StoreNotificationRequest $request)
     {
-        Notification::create([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
+        $notificationRepository->createNotification($request);
 
         return redirect()->route('admin.show');
     }
 
-    public function notificationStatus(Request $request)
+    public function notificationStatus(NotificationRepository $notificationRepository, Request $request)
     {
-        NotificationStatus::updateOrCreate([
-            'notification_id' => $request->notificationId,
-            'read_by_user' => $request->userId
-        ]);
+        $notificationRepository->createNotificationStatus($request);
 
         return redirect()->route('admin.show');
     }
 
-    public function createComplaint(StoreComplaintRequest $request)
+    public function createComplaint(NotificationRepository $notificationRepository, StoreComplaintRequest $request)
     {
-        Complaint::create([
-            'user_id' => $request->userId,
-            'description' => $request->complaint,
-        ]);
+        $notificationRepository->createComplaint($request);
+
 
         return redirect()->route('home');
     }
 
-    public function showComplaints()
+    public function showComplaints(NotificationRepository $notificationRepository)
     {
-        $complaints = Complaint::all();
+        $complaints = $notificationRepository->getComplaints();
 
         return view('admin.complaints', compact('complaints'));
-    }
-
-    public function getUnreadNotificationsCount()
-    {
-        $notificationsAll = Notification::all();
-        $notificationWithReadStatus = Notification::whereIn('id', $this->getReadNotificationIds())->get();
-
-        $unreadCount = $notificationsAll->diff($notificationWithReadStatus)->count();
-
-        return $unreadCount;
-    }
-
-    public function notificationsWithReadStatus()
-    {
-        $notifications = Notification::all();
-
-        $arrayOfIds = $this->getReadNotificationIds();
-
-        foreach ($notifications as $notification) {
-
-            $checkReadNotificationsExist = array_search($notification->id, $arrayOfIds);
-
-            if ($checkReadNotificationsExist or $checkReadNotificationsExist === 0)
-
-                $notification->readStatus = true;
-        }
-
-        return $notifications;
-    }
-
-    public function getReadNotificationIds()
-    {
-        $idOfReadNotifications = NotificationStatus::userReadNotes()->modelKeys();
-
-        return $idOfReadNotifications;
     }
 }

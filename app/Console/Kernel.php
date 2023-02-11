@@ -17,9 +17,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('notepad:dump')->cron('* * * * *');
+        // $schedule->exec('mysqldump --host db -u root  -padmin notepad > /var/www/storage/db-dumps/notepad' . '-' . date('Y-m-d') . '.sql')->cron('0 15-22 * * *');
+        // $schedule->command('notepad:dump')->cron('* * * * *');
         $schedule->job(new RemindMail)->cron('*/40 18-21 * * *');
-        
+
         if (env('CONGRATULATE_WITH_BIRTHDAY')) {
             $schedule->job(new Congratulation)->cron('1 0 * * *');
         }

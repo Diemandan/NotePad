@@ -2,33 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
-use App\Models\Comment;
 use App\Exports\NoteExport;
 
 use App\Http\Requests\StoreNoteRequest;
+use App\Repositories\NoteRepository;
+use App\Services\NoteService;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Redis;
 
 class NoteController extends Controller
 {
-    public function index(Request $request)
+    public function index(NoteRepository $noteRepository, NotificationService $notificationService, Request $request)
     {
-        $notes = Note::where('user_id', auth()->id())->get();
-        Redis::set('allNotes',$notes);
-        var_dump(Redis::get('allNotes'));
-        $unreadcount=(new NotificationController)->getUnreadNotificationsCount();
+        $notes = $noteRepository->getAllNotesAuthUser($request);
 
-        if ($request->has('sort')) {
-            $notes = Note::where('user_id', auth()->id())
-                ->orderBy('created_at', $request->sort)->get();
-        }
-
-        if ($request->has('priority')) {
-            $notes = $notes->where('priority', $request->priority);
-        }
+        $unreadcount = $notificationService->getUnreadNotificationsCount();
 
         return view('home', ['notes' => $notes, 'unread' => $unreadcount]);
     }
@@ -38,87 +28,65 @@ class NoteController extends Controller
         return view('createnote');
     }
 
-    public function store(StoreNoteRequest $request)
+    public function store(NoteRepository $noteRepository, StoreNoteRequest $request)
     {
-        Note::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'user_id' => auth()->id(),
-            'remind_at' => $request->input('remind_at'),
-            'priority' => $request->input('priority'),
-        ]);
+        $noteRepository->createNote($request);
 
         return redirect()
             ->route('home')
             ->with('success', 'Note created.');
     }
 
-    public function update(StoreNoteRequest $request)
+    public function update(NoteRepository $noteRepository, StoreNoteRequest $request)
     {
         $noteId = $request->input('note_id');
 
-        Note::where('id', $noteId)->update([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'priority' => $request->input('priority'),
-        ]);
+        $noteRepository->updateNote($noteId, $request);
 
         return redirect()
             ->route('show', ['id' => $noteId])
             ->with('success', 'Note edit success.');
     }
 
-    public function edit($id)
+    public function edit(NoteRepository $noteRepository, $id)
     {
-        $note = Note::where('id', $id)->first();
+        $note = $noteRepository->getNote($id);
 
         return view('editnote', ['note' => $note]);
     }
 
-    public function show($id)
+    public function show(NoteRepository $noteRepository, $id)
     {
-        $note = Note::find($id);
+        $note = $noteRepository->getNote($id);
 
         $comments = $note->comments;
 
         return view('note', ['note' => $note, 'comments' => $comments]);
     }
 
-    public function delete($id)
+    public function delete(NoteRepository $noteRepository, $id)
     {
-        Note::where('id', '=', $id)->delete();
-        Comment::where('note_id', '=', $id)->delete();
+        $noteRepository->deleteNote($id);
 
         return redirect()
             ->route('home')
             ->with('success', 'Note deleted with comments.');
     }
 
-    public function deleteAll()
+    public function deleteAll(NoteRepository $noteRepository)
     {
-        $userId = auth()->id();
-
-        Note::where('user_id', '=', $userId)->delete();
-        Comment::where('user_id', '=', $userId)->delete();
+        $noteRepository->deleteAllUsersNotes();
 
         return redirect()
             ->route('home')
             ->with('success', 'All Notes deleted with their comments.');
     }
 
-    public function downloadText()
+    public function downloadText(NoteService $noteService, Request $request)
     {
-        $notes = Note::where('user_id', auth()->id())->get();
+        $noteService->downloadText($request);
 
-        $content = '';
-
-        foreach ($notes as $note) {
-            $content .= $note->name . ':' . $note->description . PHP_EOL;
-        }
-
-        Storage::put('notes' . auth()->id() . '.txt', $content);
-
-        $filepath = '/var/www/notepad/storage/app/notes' . auth()->id() . '.txt';
+        $filepath = '/var/www/storage/app/notes' . auth()->id() . '.txt';
 
         return response()->download($filepath, 'base txt_copy' . auth()->id())
             ->deleteFileAfterSend(true);

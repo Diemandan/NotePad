@@ -28,9 +28,9 @@ class DbDump extends Command
 
     public function handle()
     {
-        $mysqldump = '  mysqldump -u admin  -padmin notepad > /var/www/storage/db-dumps/notepad_dump.sql';
+        $mysqldump = '  mysqldump --host db -u root  -padmin notepad > /var/www/storage/db-dumps/notepad' . '-' . date('Y-m-d-h:i:s') . '.sql' ;
         $output = array();
 
         exec($mysqldump, $output);
-    }
+   }
 }

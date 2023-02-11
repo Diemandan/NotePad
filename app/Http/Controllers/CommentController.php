@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-
 use App\Http\Requests\StoreCommentRequest;
-
+use App\Repositories\CommentRepository;
 
 class CommentController extends Controller
 {
-  public function show($id)
+  public function show(CommentRepository $commentRepository, $id)
   {
-    $comments = Comment::where('note_id', $id)
-      ->orderBy('id', 'desc')
-      ->get();
+    $comments = $commentRepository->getComments($id);
 
     return view('comment', [
       'note_id' => $id,
@@ -22,22 +18,18 @@ class CommentController extends Controller
     ]);
   }
 
-  public function create(StoreCommentRequest $request)
+  public function create(CommentRepository $commentRepository, StoreCommentRequest $request)
   {
-    Comment::create([
-      'note_id' => $request->input('note_id'),
-      'user_id' => $request->input('user_id'),
-      'text' => $request->input('text'),
-    ]);
+    $commentRepository->createComment($request);
 
     return redirect()
       ->route('show', ['id' => $request->input('note_id')])
       ->with('success', 'Comment created.');
   }
 
-  public function delete($id, $comment_id)
+  public function delete(CommentRepository $commentRepository, $id, $comment_id)
   {
-    Comment::where('id', $comment_id)->delete();
+    $commentRepository->deleteComment($comment_id);
 
     return redirect()
       ->route('show', ['id' => $id])

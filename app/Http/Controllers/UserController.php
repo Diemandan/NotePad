@@ -2,38 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Note;
-use App\Models\Comment;
-
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function showAll()
+    public function showAll(UserRepository $userRepository)
     {
-        $users = User::where('role', 'customer')->get();
+        $users = $userRepository->getUsers();
 
         return view('admin.customerUsers', compact('users'));
     }
 
-    public function delete($id)
+    public function delete(UserRepository $userRepository, $id)
     {
-        User::where('id', $id)->delete();
-        Note::where('user_id', $id)->delete();
-        Comment::where('user_id', $id)->delete();
+        $userRepository->deleteUser($id);
 
         return redirect()
             ->route('admin')
             ->with('success', 'User deleted with notes and comments.');
     }
 
-    public function changeUserStatus(Request $request)
+    public function changeUserStatus(UserRepository $userRepository, Request $request)
     {
-        User::where('id', $request->userId)->update(['is_active' => $request->status]);
+        $userRepository->changeUserStatus($request);
 
         return redirect()
             ->route('admin')
             ->with('success', 'Status changed.');
-    }  
+    }
 }

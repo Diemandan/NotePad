@@ -16,4 +16,4 @@ yarn-error.log
 /.idea
 /.vscode
 /docker-compose/mysql/data
-
+/data
