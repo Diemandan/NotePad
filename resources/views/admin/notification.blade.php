@@ -30,7 +30,7 @@
           <p class="text-center text-muted">All notifications</p>
   
           <div class="list-group w-auto">
-              @foreach ($notifications as $notification)
+              @foreach ($allNotificationsWithReadStatus as $notification)
                   <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                       <div class="d-flex gap-2 w-100 justify-content-between">
                           <div>

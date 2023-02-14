@@ -9,7 +9,6 @@ use App\Repositories\NoteRepository;
 use App\Services\NoteService;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
-
 use Maatwebsite\Excel\Facades\Excel;
 
 class NoteController extends Controller

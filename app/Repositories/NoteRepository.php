@@ -4,13 +4,23 @@ namespace App\Repositories;
 
 use App\Models\Comment;
 use App\Models\Note;
+use Illuminate\Support\Facades\Cache;
 
 class NoteRepository
 {
+
+    private $cacheKey;
+
+    public function __construct()
+    {
+        $this->cacheKey = Auth()->id() . '_' . 'allNotesAuthUser';
+    }
+
     public function getNote($id)
     {
         return Note::find($id);
     }
+
 
     public function getAllNotesAuthUser($request)
     {
@@ -23,7 +33,15 @@ class NoteRepository
         if ($request->has('priority')) {
             $notes = $notes->where('priority', $request->priority);
         }
-        return $notes = $notes->get();
+
+        if (Cache::has($this->cacheKey)) {
+            return Cache::get($this->cacheKey);
+        } else {
+            $notes = $notes->get();
+            Cache::set($this->cacheKey, $notes, 300);
+
+            return $notes;
+        }
     }
 
     public function createNote($request)
@@ -35,6 +53,8 @@ class NoteRepository
             'remind_at' => $request->input('remind_at'),
             'priority' => $request->input('priority'),
         ]);
+
+        Cache::has($this->cacheKey) && Cache::forget($this->cacheKey);
     }
 
     public function updateNote($noteId, $request)
@@ -44,12 +64,16 @@ class NoteRepository
             'description' => $request->input('description'),
             'priority' => $request->input('priority'),
         ]);
+
+        Cache::has($this->cacheKey) && Cache::forget($this->cacheKey);
     }
 
     public function deleteNote($id)
     {
         Note::where('id', '=', $id)->delete();
         Comment::where('note_id', '=', $id)->delete();
+
+        Cache::has($this->cacheKey) && Cache::forget($this->cacheKey);
     }
 
     public function deleteAllUsersNotes()
@@ -58,5 +82,7 @@ class NoteRepository
 
         Note::where('user_id', '=', $userId)->delete();
         Comment::where('user_id', '=', $userId)->delete();
+
+        Cache::has($this->cacheKey) && Cache::forget($this->cacheKey);
     }
 }
